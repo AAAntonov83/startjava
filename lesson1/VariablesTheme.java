@@ -116,10 +116,10 @@ public class VariablesTheme {
         System.out.println("Произведение = " + multDigits);
 
         System.out.println("\n9. Вывод времени");
-        int num4 = 86399;
-        int hours = num4 / 3600;
-        int minutes = num4 % 3600 / 60;
-        int seconds = num4 % 60;
+        int totalSeconds = 86399;
+        int hours = totalSeconds / 3600;
+        int minutes = totalSeconds % 3600 / 60;
+        int seconds = totalSeconds % 60;
         System.out.println(hours + ":" + minutes + ":" + seconds);
     }
 }
