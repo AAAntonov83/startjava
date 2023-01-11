@@ -96,11 +96,11 @@ public class VariablesTheme {
 
         System.out.println("    " + fSlash + bSlash);
         System.out.println("   " + fSlash + "  " + bSlash);
-        System.out.println("  " + fSlash + underline + oParenthesis + " " + clParenthesis
-                + bSlash);
+        System.out.println("  " + fSlash + underline + oParenthesis
+                + " " + clParenthesis + bSlash);
         System.out.println(" " + fSlash + "      " + bSlash);
-        System.out.println("" + fSlash + underline + underline + underline + underline + fSlash
-                + bSlash + underline + underline + bSlash);
+        System.out.println("" + fSlash + underline + underline + underline
+                + underline + fSlash + bSlash + underline + underline + bSlash);
 
         System.out.println("\n8. Вывод количества сотен, десятков и единиц числа");
         int num3 = 123;
