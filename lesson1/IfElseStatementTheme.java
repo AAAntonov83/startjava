@@ -99,7 +99,6 @@ public class IfElseStatementTheme {
         System.out.println("\n6. Подсчет суммы вклада и начисленных банком %");
         float deposit = 300_000f;
         int accrualRate = 10;
-        float accrualAmount = 0f;
 
         if (deposit < 100_000) {
             accrualRate = 5;
@@ -107,7 +106,7 @@ public class IfElseStatementTheme {
             accrualRate = 7;
         }
 
-        accrualAmount = deposit * accrualRate / 100;
+        float accrualAmount = deposit * accrualRate / 100;
         System.out.println("Сумма вклада: " + deposit + ", начисленный процент: "
                 + accrualAmount + ", итоговая сумма: " + (deposit + accrualAmount));
 
