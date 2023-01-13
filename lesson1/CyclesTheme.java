@@ -17,6 +17,10 @@ public class CyclesTheme {
         } while (++counter <= max);
         System.out.printf("В промежутке [%s, %s] сумма четных чисел = %d, а нечетных = %d%n",
                 min, max, even, odd);
+        int asd = 0;
+        for (int i = -10; i < 21; i++) 
+            asd += i;
+        System.out.println(asd);
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int num1 = 10;
