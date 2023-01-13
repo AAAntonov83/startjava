@@ -15,12 +15,9 @@ public class CyclesTheme {
                 odd += counter;
             }
         } while (++counter <= max);
+        
         System.out.printf("В промежутке [%s, %s] сумма четных чисел = %d, а нечетных = %d%n",
                 min, max, even, odd);
-        int asd = 0;
-        for (int i = -10; i < 21; i++) 
-            asd += i;
-        System.out.println(asd);
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int num1 = 10;
@@ -71,7 +68,7 @@ public class CyclesTheme {
 
         System.out.println("\n5. Проверка количества двоек на четность/нечетность");
         //int num5 = 3242592;
-        int num5 = 22;
+        int num5 = 3242592;
         int tmp2 = num5;
         int counter3 = 0;
 
@@ -219,10 +216,9 @@ public class CyclesTheme {
                     System.out.print("|");
                     drawnVertical = true;
                     j--;
-                } else if (i == 2) {
-                    if (!drawnHorizontal) {
-                        System.out.print("---");
-                    } else if (j == 9){
+                } else if (i == 2 && !drawnHorizontal) {
+                    System.out.print("---");
+                    if (j == 9){
                         i--;
                         drawnHorizontal = true;
                     }
