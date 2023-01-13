@@ -19,9 +19,10 @@ public class VariablesTheme {
         int penPrice = 100;
         int bookPrice = 200;
         int discountPercent = 11;
-        float diskountSum = (float) discountPercent / 100 * (penPrice + bookPrice);
-        float discountPrice = (float) (100 - discountPercent) / 100 * (penPrice + bookPrice);
-        System.out.println("Сумма скидки - " + diskountSum);
+        int totalPrice = penPrice + bookPrice;
+        float discountSum = (float) discountPercent / 100 * totalPrice;
+        float discountPrice = (float) (100 - discountPercent) / 100 * totalPrice;
+        System.out.println("Сумма скидки - " + discountSum);
         System.out.println("Сумма товаров со скидкой - " + discountPrice);
 
         System.out.println("\n3. Вывод слова JAVA");
@@ -32,24 +33,16 @@ public class VariablesTheme {
 
         System.out.println("\n4. Вывод min и max значений целых числовых типов");
         byte maxByte = 127;
-        System.out.println(maxByte);
-        System.out.println(++maxByte);
-        System.out.println(--maxByte);
+        System.out.println(maxByte + "\n"+ ++maxByte + "\n"+ --maxByte);
 
         short maxShort = 32_767;
-        System.out.println(maxShort);
-        System.out.println(++maxShort);
-        System.out.println(--maxShort);
+        System.out.println(maxShort + "\n"+ ++maxShort + "\n" + --maxShort);
 
         int maxInt = 2_147_483_647;
-        System.out.println(maxInt);
-        System.out.println(++maxInt);
-        System.out.println(--maxInt);
+        System.out.println(maxInt + "\n"+ ++maxInt + "\n" + --maxInt);
 
         long maxLong = 9_223_372_036_854_775_807L;
-        System.out.println(maxLong);
-        System.out.println(++maxLong);
-        System.out.println(--maxLong);
+        System.out.println(maxLong + "\n"+ ++maxLong + "\n" + --maxLong);
 
         System.out.println("\n5. Перестановка значений переменных");
         System.out.println("Перестановка через третью переменную.");
@@ -88,19 +81,19 @@ public class VariablesTheme {
         System.out.println(sym5 + " " + (byte) sym5);
 
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка");
-        char fSlash = '/';
-        char bSlash = '\\';
+        char slash = '/';
+        char backslash = '\\';
         char underline = '_';
         char oParenthesis = '(';
         char clParenthesis = ')';
 
-        System.out.println("    " + fSlash + bSlash);
-        System.out.println("   " + fSlash + "  " + bSlash);
-        System.out.println("  " + fSlash + underline + oParenthesis
-                + " " + clParenthesis + bSlash);
-        System.out.println(" " + fSlash + "      " + bSlash);
-        System.out.println("" + fSlash + underline + underline + underline
-                + underline + fSlash + bSlash + underline + underline + bSlash);
+        System.out.println("    " + slash + backslash);
+        System.out.println("   " + slash + "  " + backslash);
+        System.out.println("  " + slash + underline + oParenthesis
+                + " " + clParenthesis + backslash);
+        System.out.println(" " + slash + "      " + backslash);
+        System.out.println("" + slash + underline + underline + underline
+                + underline + slash + backslash + underline + underline + backslash);
 
         System.out.println("\n8. Вывод количества сотен, десятков и единиц числа");
         int num3 = 123;
