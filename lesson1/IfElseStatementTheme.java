@@ -93,18 +93,20 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n6. Подсчет суммы вклада и начисленных банком %");
-        float depositAmount = 300_000f;
-        float interestAmount = 0f;
+        float deposit = 300_000f;
+        int accrualRate = 0;
+        float accrualAmount = 0f;
 
-        if (depositAmount < 100_000) {
-            interestAmount = depositAmount * 0.05f;
-        } else if (depositAmount <= 300_000) {
-            interestAmount = depositAmount * 0.07f;
+        if (deposit < 100_000) {
+            accrualRate = 5;
+        } else if (deposit <= 300_000) {
+            accrualRate = 7;
         } else {
-            interestAmount = depositAmount * 0.1f;
+            accrualRate = 10;
         }
-        System.out.println("Сумма вклада: " + depositAmount + ", начисленный процент: "
-                + interestAmount + ", итоговая сумма: " + (depositAmount + interestAmount));
+        accrualAmount = deposit * accrualRate / 100;
+        System.out.println("Сумма вклада: " + deposit + ", начисленный процент: "
+                + accrualAmount + ", итоговая сумма: " + (deposit + accrualAmount));
 
         System.out.println("\n7. Определение оценки по предметам");
         byte historyPercent = 59;
