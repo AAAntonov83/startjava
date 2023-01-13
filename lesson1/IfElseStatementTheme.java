@@ -35,11 +35,11 @@ public class IfElseStatementTheme {
         System.out.println("\n2. Поиск max и min числа");
         int num1 = 5;
         int num2 = 10;
-        if (num1 < num2) {
+        if (num1 == num2) {
+            System.out.println("Числа равны.");
+        } else if (num1 < num2) {
             System.out.println("Число " + num1 + " - минимальное, число "
                     + num2 + " - максимальное.");
-        } else if (num1 == num2) {
-            System.out.println("Числа равны.");
         } else {
             System.out.println("Число " + num1 + " - максимальное, число "
                     + num2 + " - минимальное.");
@@ -47,14 +47,18 @@ public class IfElseStatementTheme {
 
         System.out.println("\n3. Проверка числа");
         int num3 = 11;
-        if (num3 > 0) {
-            if (num3 % 2 == 0) {
-                System.out.println("Число " + num3 + " четное");
-            } else {
-                System.out.println("Число " + num3 + " нечетное");
-            }
-        } else {
+        String sign = "положительное";
+        String property = "четное";
+        if (num3 == 0) {
             System.out.println("Число " + num3 + " это ноль.");
+        } else {
+            if (num3 % 2 != 0) {
+                property = "нечетное";
+            }
+            if (num3 < 0) {
+                sign = "отрицательное";
+            }
+            System.out.printf("Число %d %s %s%n", num3, property, sign);
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах");
@@ -80,30 +84,29 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n5. Определение символа по его коду");
-        char sym = '\u0057';
+        char symbol = '\u0057';
 
-        if (sym >= 'a' && sym <= 'z') {
-            System.out.println(sym + " - маленькая буква.");
-        } else if (sym >= 'A' && sym <= 'Z') {
-            System.out.println(sym + " - заглавная буква.");
-        } else if (sym >= '0' && sym <= '9') {
-            System.out.println(sym + " - число.");
+        if (symbol >= 'a' && symbol <= 'z') {
+            System.out.println(symbol + " - маленькая буква.");
+        } else if (symbol >= 'A' && symbol <= 'Z') {
+            System.out.println(symbol + " - заглавная буква.");
+        } else if (symbol >= '0' && symbol <= '9') {
+            System.out.println(symbol + " - число.");
         } else {
-            System.out.println(sym + " - не буква и не число.");
+            System.out.println(symbol + " - не буква и не число.");
         }
 
         System.out.println("\n6. Подсчет суммы вклада и начисленных банком %");
         float deposit = 300_000f;
-        int accrualRate = 0;
+        int accrualRate = 10;
         float accrualAmount = 0f;
 
         if (deposit < 100_000) {
             accrualRate = 5;
         } else if (deposit <= 300_000) {
             accrualRate = 7;
-        } else {
-            accrualRate = 10;
         }
+
         accrualAmount = deposit * accrualRate / 100;
         System.out.println("Сумма вклада: " + deposit + ", начисленный процент: "
                 + accrualAmount + ", итоговая сумма: " + (deposit + accrualAmount));
@@ -140,12 +143,12 @@ public class IfElseStatementTheme {
         int cost = 9000;
         int revenue = 13000;
         int profit = (revenue - (rent + cost)) * 12;
-        String sigh = "";
+        String sign2 = "";
 
         if (profit > 0) {
-            sigh = "+";
+            sign2 = "+";
         }
-        System.out.println("Прибыль за год: " + sigh + profit);
+        System.out.println("Прибыль за год: " + sign2 + profit);
 
         System.out.println("\n9. Подсчет количества банкнот");
         int withdrawAmount = 567;
