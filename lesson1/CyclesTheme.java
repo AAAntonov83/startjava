@@ -53,21 +53,6 @@ public class CyclesTheme {
         System.out.println("\n" + sum);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        //int limit = 24;
-
-        // for (int i = 1, j = 1; true; i += 2, j++) {
-        //     if (i >= limit && j % 5 == 1) {
-        //         break;
-        //     }
-        //     if (i > limit) {
-        //         System.out.printf("%4d", 0);
-        //     } else {
-        //         System.out.printf("%4d", i);
-        //     }
-        //     if (j % 5 == 0) {
-        //         System.out.print("\n");
-        //     }
-        // }
 
         int limit = 24;
         int columnMax = 5;
