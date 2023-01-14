@@ -53,19 +53,40 @@ public class CyclesTheme {
         System.out.println("\n" + sum);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        int limit = 24;
+        //int limit = 24;
 
-        for (int i = 1, j = 1; true; i += 2, j++) {
-            if (i >= limit && j % 5 == 1) {
+        // for (int i = 1, j = 1; true; i += 2, j++) {
+        //     if (i >= limit && j % 5 == 1) {
+        //         break;
+        //     }
+        //     if (i > limit) {
+        //         System.out.printf("%4d", 0);
+        //     } else {
+        //         System.out.printf("%4d", i);
+        //     }
+        //     if (j % 5 == 0) {
+        //         System.out.print("\n");
+        //     }
+        // }
+
+        int limit = 24;
+        int columnMax = 5;
+        int columnCounter = 1;
+
+        for (int i = 1; true; i += 2) {
+            if (i >= limit && columnCounter % 5 == 1) {
                 break;
             }
-            if (i > limit) {
-                System.out.printf("%4d", 0);
-            } else {
+            if (i < limit) {
                 System.out.printf("%4d", i);
+            } else {
+                System.out.printf("%4d", 0);
             }
-            if (j % 5 == 0) {
+            if (columnCounter % columnMax == 0) {
                 System.out.print("\n");
+                columnCounter = 1;
+            } else {
+                columnCounter++;
             }
         }
 
@@ -93,20 +114,20 @@ public class CyclesTheme {
         }
         System.out.println("");
 
-        int columnCounter = 5;
+        int columnCounter2 = 5;
         int columnLimit = 5;
         while (columnLimit-- > 0) {
-            while (columnCounter-- > 0) {
+            while (columnCounter2-- > 0) {
                 System.out.print("#");
             }
             System.out.println("");
-            columnCounter = columnLimit;
+            columnCounter2 = columnLimit;
         }
         System.out.println("");
         
         columnCounter = 1;
         columnLimit = 1;
-        int columnMax = 3;
+        int columnMax2 = 3;
         boolean growing = true;
 
         do {
@@ -114,7 +135,7 @@ public class CyclesTheme {
                 System.out.print("$");
             } while (++columnCounter <= columnLimit);
             System.out.println("");
-            if (columnLimit == columnMax) {
+            if (columnLimit == columnMax2) {
                 growing = false;
             }
             if (growing) {
