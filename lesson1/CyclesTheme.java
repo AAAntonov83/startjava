@@ -53,19 +53,23 @@ public class CyclesTheme {
         System.out.println("\n" + sum);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        for (int i = 1, j = 1; i < 5; i++) {
-            for (int k = 1; j < 24; j += 2, k++) {
-                System.out.printf("%4d", j);
-                if (k % 5 == 0) {
-                    System.out.println("");
-                } else {
-                    i = k % 5;
-                }
+        int limit = 24;
+
+        for (int i = 1, j = 1; true; i += 2, j++) {
+            if (i >= limit && j % 5 == 1) {
+                break;
             }
-            System.out.printf("%4d", 0);
+            if (i > limit) {
+                System.out.printf("%4d", 0);
+            } else {
+                System.out.printf("%4d", i);
+            }
+            if (j % 5 == 0) {
+                System.out.print("\n");
+            }
         }
 
-        System.out.println("\n\n5. Проверка количества двоек на четность/нечетность");
+        System.out.println("\n5. Проверка количества двоек на четность/нечетность");
         int num5 = 3242592;
         int copyNum5 = num5;
         int counterTwos = 0;
