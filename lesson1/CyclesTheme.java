@@ -2,22 +2,22 @@ public class CyclesTheme {
 
     public static void main(String[] args) {
         System.out.println("1. Подсчет суммы четных и нечетных чисел");
-        int odd = 0;
-        int even = 0;
+        int sumOdd = 0;
+        int sumEven = 0;
         int min = -10;
         int max = 21;
         int counter = min;
 
         do {
             if (counter % 2 == 0) {
-                even += counter;
+                sumEven += counter;
             } else {
-                odd += counter;
+                sumOdd += counter;
             }
         } while (++counter <= max);
         
         System.out.printf("В промежутке [%s, %s] сумма четных чисел = %d, а нечетных = %d%n",
-                min, max, even, odd);
+                min, max, sumEven, sumOdd);
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int num1 = 10;
@@ -28,9 +28,9 @@ public class CyclesTheme {
 
         if (num1 >= num2) {
             max2 = num1 >= num3 ? num1 : num3;
-            min2 = num2 >= num3 ? num3 : num2;
+            min2 = num2 <= num3 ? num2 : num3;
         } else {
-            min2 = num1 >= num3 ? num3 : num1;
+            min2 = num1 <= num3 ? num1 : num3;
             max2 = num2 >= num3 ? num2 : num3;
         }
 
@@ -40,55 +40,54 @@ public class CyclesTheme {
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         int num4 = 12345;
-        int tmp = 0;
+        int remainder = num4 % 10;
         int sum = 0;
 
-        while (num4 > 0) {
-            tmp = num4 % 10; 
-            System.out.print(tmp);
-            sum += tmp;
+        while (num4 > 0) { 
             num4 /= 10;
+            System.out.print(remainder);
+            sum += remainder;
+            remainder = num4 % 10;
         }
 
         System.out.println("\n" + sum);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        int num10 = 24;
-
-        for (int i = 1, j = 1; i <= num10 || j % 5 != 1; i += 2, j++) {
-            if (i > num10) {
-                System.out.printf("%4d", 0);
-            } else {
-                System.out.printf("%4d", i);
+        for (int i = 1, j = 1; i < 5; i++) {
+            for (int k = 1; j < 24; j += 2, k++) {
+                System.out.printf("%4d", j);
+                if (k % 5 == 0) {
+                    System.out.println("");
+                } else {
+                    i = k % 5;
+                }
             }
-            if (j % 5 == 0) {
-                System.out.print("\n");
-            }
+            System.out.printf("%4d", 0);
         }
 
-        System.out.println("\n5. Проверка количества двоек на четность/нечетность");
-        //int num5 = 3242592;
+        System.out.println("\n\n5. Проверка количества двоек на четность/нечетность");
         int num5 = 3242592;
-        int tmp2 = num5;
-        int counter3 = 0;
+        int copyNum5 = num5;
+        int counterTwos = 0;
 
-        while (tmp2 > 0) {
-            if (tmp2 % 10 == 2) {
-                counter3++;
+        while (copyNum5 > 0) {
+            if (copyNum5 % 10 == 2) {
+                counterTwos++;
             }
-            tmp2 /= 10;
+            copyNum5 /= 10;
         }
 
-        System.out.printf("Число %d содержит %s количество двоек.%n", num5, (counter3 % 2) == 0 ? "четное" : "нечетное");
+        System.out.printf("Число %d содержит %s количество двоек.%n",
+                num5, (counterTwos % 2) == 0 ? "четное" : "нечетное");
 
         System.out.println("\n6. Отображение фигур в консоли");
         for (int i = 1; i <= 5; i++) {
             for (int j = 1; j <= 10; j++) {
                 System.out.print("*");
             }
-            System.out.print("\n");
+            System.out.println("");
         }
-        System.out.print("\n");
+        System.out.println("");
 
         int columnCounter = 5;
         int columnLimit = 5;
@@ -96,10 +95,10 @@ public class CyclesTheme {
             while (columnCounter-- > 0) {
                 System.out.print("#");
             }
-            System.out.print("\n");
+            System.out.println("");
             columnCounter = columnLimit;
         }
-        System.out.print("\n");
+        System.out.println("");
         
         columnCounter = 1;
         columnLimit = 1;
@@ -110,7 +109,7 @@ public class CyclesTheme {
             do {
                 System.out.print("$");
             } while (++columnCounter <= columnLimit);
-            System.out.print("\n");
+            System.out.println("");
             if (columnLimit == columnMax) {
                 growing = false;
             }
@@ -226,9 +225,9 @@ public class CyclesTheme {
                     System.out.printf("%3d", i * j);
                 }
             }
-            System.out.print("\n");
+            System.out.println("");
             drawnVertical = false;
         }
-        System.out.print("\n");
+        System.out.println("");
     }
 }
