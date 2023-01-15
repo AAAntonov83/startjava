@@ -67,7 +67,7 @@ public class CyclesTheme {
                 System.out.printf("%4d", 0);
             }
             if (columnCount % columnMax == 0) {
-                System.out.print("\n");
+                System.out.println();
                 columnCount = 1;
             } else {
                 columnCount++;
@@ -129,12 +129,12 @@ public class CyclesTheme {
 
         System.out.println("\n7. Отображение ASCII-символов");
         System.out.printf("%4s %4s%n", "DEC", "Char");
-
-        for (char symbol = '!'; symbol <= 'z'; symbol++) {
-            if (symbol < '0' && symbol % 2 != 0) {
-                System.out.printf("%4d %4c%n", (byte) symbol, symbol);
-            } else if (symbol >= 'a' && symbol <= 'z' && symbol % 2 == 0) {
-                System.out.printf("%4d %4c%n", (byte) symbol, symbol);
+        for (int i = 0; i < 128 ; i++) {
+            char symbol = (char) i;
+            if (symbol < '0' && i % 2 != 0) {
+                System.out.printf("%4d %4c%n", i, symbol);
+            } else if (symbol >= 'a' && symbol <= 'z' && i % 2 == 0) {
+                System.out.printf("%4d %4c%n", i, symbol);
             }
         }
 
@@ -153,16 +153,16 @@ public class CyclesTheme {
 
         System.out.println("\n9. Определение, является ли число счастливым");
         int num6 = 123321;
-        int remainderRight = num6 / 1000;
-        int remainderLeft = num6 % 1000;
+        int rightHalfNum6 = num6 / 1000;
+        int leftHalfNum6 = num6 % 1000;
         int sumRight = 0;
         int sumLeft = 0;
 
         for (int i = 1; i <= 3; i++) {
-            sumLeft += remainderLeft % 10;
-            sumRight += remainderRight % 10;
-            remainderRight /= 10;
-            remainderLeft /= 10;
+            sumLeft += leftHalfNum6 % 10;
+            sumRight += rightHalfNum6 % 10;
+            rightHalfNum6 /= 10;
+            leftHalfNum6 /= 10;
         }
 
         System.out.printf("Сумма цифр %d = %d%n", num6 / 1000, sumRight);
@@ -171,31 +171,23 @@ public class CyclesTheme {
                 num6, sumRight == sumLeft ? "" : "не");
 
         System.out.println("\n10. Вывод таблицы умножения Пифагора");
-        boolean drawnVertical = false;
-        boolean drawnHorizontal = false;
-
         System.out.println("     ТАБЛИЦА     ПИФАГОРА");
 
-        for (int i = 1; i <= 9; i++) {
-            for (int j = 1; j <= 9; j++) {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
                 if (i == 1 && j == 1) {
                     System.out.print("   ");
-                } else if (j == 2 && !drawnVertical) {
+                } else if (j == 2) {
                     System.out.print("|");
-                    drawnVertical = true;
-                    j--;
-                } else if (i == 2 && !drawnHorizontal) {
+                } else if (i == 2 && j != 2) {
                     System.out.print("---");
-                    if (j == 9){
-                        i--;
-                        drawnHorizontal = true;
-                    }
                 } else {
-                    System.out.printf("%3d", i * j);
+                    int factor1 = i > 2 ? i - 1 : i;
+                    int factor2 = j > 2 ? j - 1 : j;
+                    System.out.printf("%3d", factor1 * factor2);
                 }
             }
             System.out.println();
-            drawnVertical = false;
         }
         System.out.println();
     }
