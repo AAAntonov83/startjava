@@ -130,11 +130,10 @@ public class CyclesTheme {
         System.out.println("\n7. Отображение ASCII-символов");
         System.out.printf("%4s %4s%n", "DEC", "Char");
         for (int i = 0; i < 128 ; i++) {
-            char symbol = (char) i;
-            if (symbol < '0' && i % 2 != 0) {
-                System.out.printf("%4d %4c%n", i, symbol);
-            } else if (symbol >= 'a' && symbol <= 'z' && i % 2 == 0) {
-                System.out.printf("%4d %4c%n", i, symbol);
+            if (i < '0' && i % 2 != 0) {
+                System.out.printf("%4d %4c%n", i, i);
+            } else if (i >= 'a' && i <= 'z' && i % 2 == 0) {
+                System.out.printf("%4d %4c%n", i, i);
             }
         }
 
