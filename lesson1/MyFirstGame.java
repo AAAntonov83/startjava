@@ -14,7 +14,7 @@ public class MyFirstGame {
             }
 
             if (i == 100) {
-                i = 1;
+                i = -1;
             }
         }
     }
