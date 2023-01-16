@@ -1,28 +1,28 @@
 public class Calculator {
 
     public static void main(String[] args) {
-        int a = 4;
-        int b = 4;
+        int firstNumber = 4;
+        int secondNumber = 4;
         int result = 0;
         char sign = '*';
 
         if (sign == '+') {
-            result = a + b;
+            result = firstNumber + secondNumber;
         } else if (sign == '-') {
-            result = a - b;
+            result = firstNumber - secondNumber;
         } else if (sign == '*') {
-            result = a * b;
+            result = firstNumber * secondNumber;
         } else if (sign == '/') {
-            result = a / b;
+            result = firstNumber / secondNumber;
         } else if (sign == '^') {
-            result = a;
-            for (int i = 1; i < b; i++) {
-                result *= a;
+            result = firstNumber;
+            for (int i = 1; i < secondNumber; i++) {
+                result *= firstNumber;
             }
         } else if (sign == '%') {
-            result = a % b;
+            result = firstNumber % secondNumber;
         }
 
-        System.out.printf("%d %c %d = %d%n", a, sign, b, result);
+        System.out.printf("%d %c %d = %d%n", firstNumber, sign, secondNumber, result);
     }
 }
