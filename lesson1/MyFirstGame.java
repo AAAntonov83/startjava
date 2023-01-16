@@ -7,7 +7,9 @@ public class MyFirstGame {
             if (i == secretNumber) {
                 System.out.println("Вы победили!");
                 break;
-            } else if (i < secretNumber) {
+            }
+
+            if (i < secretNumber) {
                 System.out.printf("Число %d меньше того, что загадал компьютер%n", i);
             } else {
                 System.out.printf("Число %d больше того, что загадал компьютер%n", i);
