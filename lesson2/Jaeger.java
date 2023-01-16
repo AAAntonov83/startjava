@@ -3,8 +3,8 @@ class Jaeger {
     String modelName = "Bracer Phoenix";
     String mark = "Mark-5";
     String origin = "USA";
-    float height = 70.7;
-    float weidht = 2.1;
+    float height = 70.7f;
+    float weidht = 2.1f;
     int speed = 3;
     int strength = 8;
     int armor = 9;
