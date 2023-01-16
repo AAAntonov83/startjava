@@ -1,13 +1,13 @@
 public class MyFirstGame {
 
     public static void main(String[] args) {
-        int secret = 77;
+        int secretNumber = 77;
 
         for (int i = 2; i <= 100; i += 2) {
-            if (i == secret) {
+            if (i == secretNumber) {
                 System.out.println("Вы победили!");
                 break;
-            } else if (i < secret) {
+            } else if (i < secretNumber) {
                 System.out.printf("Число %d меньше того, что загадал компьютер%n", i);
             } else {
                 System.out.printf("Число %d больше того, что загадал компьютер%n", i);
