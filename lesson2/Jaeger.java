@@ -10,14 +10,16 @@ class Jaeger {
     int armor = 9;
 
     boolean drift() {
-
+        System.out.println("Вы вошли в дрифт");
+        return true;
     }
 
     void move() {
-
+        System.out.println("Вы прошли 5 шагов");
     }
 
     String scanKaiju() {
+        return "nothing";
 
     }
 
