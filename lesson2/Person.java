@@ -1,17 +1,21 @@
 public class Person {
-    private String gender = "Male";
-    private String name = "John Rambo";
-    private int age = 35;
+    
+    String gender = "Male";
+    String name = "John Rambo";
+    int age = 35;
 
-    public void walk() {
+    void walk() {
     }
 
-    public void run() {
+    void run() {
     }
 
-    public void say() {
+    void shave() {
     }
 
-    public void learn() {
+    void talk() {
+    }
+
+    void learnJava() {
     }
 }
