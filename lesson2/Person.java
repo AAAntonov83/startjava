@@ -1,10 +1,10 @@
 class Person {
-    
+
     String gender = "Male";
     String name = "John Rambo";
     int age = 35;
 
-    void walk() {
+    void move() {
         System.out.println("Иду по важным делам");
     }
 
