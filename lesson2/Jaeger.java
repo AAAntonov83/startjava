@@ -23,6 +23,6 @@ class Jaeger {
     }
 
     void useVortexCannon() {
-
+        System.out.println("Bang-bang");
     }
 }
