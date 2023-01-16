@@ -4,25 +4,25 @@ public class Calculator {
         int a = 4;
         int b = 4;
         int result = 0;
-        String sign = "*";
+        char sign = '*';
 
-        if (sign == "+") {
+        if (sign == '+') {
             result = a + b;
-        } else if (sign == "-") {
+        } else if (sign == '-') {
             result = a - b;
-        } else if (sign == "*") {
+        } else if (sign == '*') {
             result = a * b;
-        } else if (sign == "/") {
+        } else if (sign == '/') {
             result = a / b;
-        } else if (sign == "^") {
+        } else if (sign == '^') {
             result = a;
             for (int i = 1; i < b; i++) {
                 result *= a;
             }
-        } else if (sign == "%") {
+        } else if (sign == '%') {
             result = a % b;
         }
 
-        System.out.printf("%d %s %d = %d%n", a, sign, b, result);
+        System.out.printf("%d %c %d = %d%n", a, sign, b, result);
     }
 }
