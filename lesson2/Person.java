@@ -1,4 +1,4 @@
-public class Person {
+class Person {
     
     String gender = "Male";
     String name = "John Rambo";
