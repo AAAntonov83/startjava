@@ -20,7 +20,6 @@ class Jaeger {
 
     String scanKaiju() {
         return "nothing";
-
     }
 
     void useVortexCannon() {
