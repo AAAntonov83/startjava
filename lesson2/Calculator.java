@@ -5,27 +5,23 @@ public class Calculator {
 
         switch (operation) {
             case '+':
-                result = number1 + number2;
-                break;
+                return number1 + number2;
             case '-':
-                result = number1 - number2;
-                break;
+                return number1 - number2;
             case '*':
-                result = number1 * number2;
-                break;
+                return number1 * number2;
             case '/':
-                result = number1 / number2;
-                break;
+                return number1 / number2;
             case '^':
                 result = number1;
                 for (int i = 1; i < number2; i++) {
                     result *= number1;
                 }
-                break;
+                return result;
             case '%':
-                result = number1 % number2;
+                return number1 % number2;
         }
 
-        return result;
+        return 0;
     }
 }
