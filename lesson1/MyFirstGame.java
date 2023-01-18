@@ -4,12 +4,7 @@ public class MyFirstGame {
         int secretNumber = 77;
         int playerNumber = 88;
 
-        while (true) {
-            if (playerNumber == secretNumber) {
-                System.out.println("Вы победили!");
-                break;
-            }
-
+        while (playerNumber != secretNumber) {
             if (playerNumber < secretNumber) {
                 System.out.printf("Число %d меньше того, что загадал компьютер%n", playerNumber);
                 playerNumber++;
@@ -18,5 +13,6 @@ public class MyFirstGame {
                 playerNumber--;
             }
         }
+        System.out.println("Вы победили!");
     }
 }
