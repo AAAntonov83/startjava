@@ -1,7 +1,6 @@
 public class Calculator {
 
     public int calculate(int number1, int number2, char operation) {
-        int result = 0;
 
         switch (operation) {
             case '+':
@@ -13,7 +12,7 @@ public class Calculator {
             case '/':
                 return number1 / number2;
             case '^':
-                result = number1;
+                int result = number1;
                 for (int i = 1; i < number2; i++) {
                     result *= number1;
                 }
