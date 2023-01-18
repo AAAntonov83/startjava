@@ -1,7 +1,6 @@
 public class Calculator {
 
     public int calculate(int number1, int number2, char operation) {
-
         switch (operation) {
             case '+':
                 return number1 + number2;
