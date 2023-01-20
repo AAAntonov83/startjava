@@ -6,8 +6,8 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private int secretNumber;
-    private int min;
-    private int max;
+    private int min = 1;
+    private int max = 100;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
@@ -15,7 +15,7 @@ public class GuessNumber {
     }
 
     public void start() {
-        initialize();
+        secretNumber = getRandomNumber(min, max);
 
         while (true) {
             thinkNumber(player1);
@@ -27,12 +27,6 @@ public class GuessNumber {
                 break;
             }
         }
-    }
-
-    private void initialize() {
-        min = 1;
-        max = 100;
-        secretNumber = getRandomNumber(min, max);
     }
 
     private int getRandomNumber(int min, int max) {
