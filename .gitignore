@@ -1,4 +1,2 @@
 $ cat .gitignore
-/out
-*.class
-*.jar
+out
