@@ -15,37 +15,31 @@ public class GuessNumber {
     }
 
     public void start() {
-        secretNumber = getRandomNumber(min, max);
+        secretNumber = min + (int) (Math.random() * (max - min + 1));
 
         while (true) {
-            thinkNumber(player1);
+            inputNumber(player1);
             if (guessNumber(player1)) {
                 break;
             }
-            thinkNumber(player2);
+            inputNumber(player2);
             if (guessNumber(player2)) {
                 break;
             }
         }
     }
 
-    private int getRandomNumber(int min, int max) {
-        return min + (int) (Math.random() * (max - min + 1));
-    }
-
-    private void thinkNumber(Player player) {
-        boolean inRange = false;
+    private void inputNumber(Player player) {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("%s называет число: ", player.getName());
 
-        while (!inRange) {
+        while (true) {
             int answer = scanner.nextInt();
             if (answer >= min && answer <= max) {
-                inRange = true;
                 player.setNumber(answer);
-            } else {
-                System.out.printf("Введите число в диапазоне [%d, %d]", min, max);
+                return;
             }
+            System.out.printf("Введите число в диапазоне [%d, %d]: ", min, max);
         } 
     }
 
@@ -55,7 +49,8 @@ public class GuessNumber {
         if (number == secretNumber) {
             System.out.printf("Игрок %s угадал число %d%n", player.getName(), secretNumber);
             return true;
-        } else if (number > secretNumber) {
+        }
+        if (number > secretNumber) {
             System.out.printf("Число %d больше того, что загадал компьютер.%n", number);
         } else {
             System.out.printf("Число %d меньше того, что загадал компьютер.%n", number);
