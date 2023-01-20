@@ -20,11 +20,11 @@ public class GuessNumber {
         while (true) {
             inputNumber(player1);
             if (guessNumber(player1)) {
-                break;
+                return;
             }
             inputNumber(player2);
             if (guessNumber(player2)) {
-                break;
+                return;
             }
         }
     }
