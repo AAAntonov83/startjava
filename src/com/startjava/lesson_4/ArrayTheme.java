@@ -102,12 +102,14 @@ public class ArrayTheme {
         showArray(strings);
         showArray(stringsCopy);
     }
+
     private static void showArray(String[] strings) {
         for (String string : strings) {
             System.out.print(string);
         }
         System.out.println();
     }
+
     private static void showArray(int[] intArr) {
         for (int num : intArr) {
             System.out.printf("%d ", num);
@@ -150,6 +152,4 @@ public class ArrayTheme {
             }
         }
     }
-
-
 }
