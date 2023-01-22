@@ -27,8 +27,9 @@ public class ArrayTheme {
         for (int i = 0; i < intsArr.length; i++) {
             result = i > 0 && i < 9 ? result * i : result;
             System.out.print(i == 0 ? intsArr[i] + " " + i + "\n": "");
-            System.out.print(i > 0 && i < 9 ? i + " * " : "");
-            System.out.print(i == 9 ? "9 = " + result + "\n" + intsArr[i] + " " + i + "\n": "");
+            System.out.print(i > 0 && i < 8 ? i + " * " : "");
+            System.out.print(i == 8 ? i : "");
+            System.out.print(i == 9 ? " = " + result + "\n" + intsArr[i] + " " + i + "\n": "");
         }
 
         System.out.println("\n3. Удаление элементов массива");
