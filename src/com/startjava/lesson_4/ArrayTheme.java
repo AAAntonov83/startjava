@@ -102,10 +102,25 @@ public class ArrayTheme {
         showArray(strings);
         showArray(stringsCopy);
     }
-
+    private static void showArray(String[] strings) {
+        for (String string : strings) {
+            System.out.print(string);
+        }
+        System.out.println();
+    }
     private static void showArray(int[] intArr) {
         for (int num : intArr) {
             System.out.printf("%d ", num);
+        }
+        System.out.println();
+    }
+
+    private static void showArray(int[] intArr, int limit) {
+        for (int i = 0; i < intArr.length; i++) {
+            if (i > 0 && i % limit == 0) {
+                System.out.println();
+            }
+            System.out.printf("%d ", intArr[i]);
         }
         System.out.println();
     }
@@ -124,16 +139,6 @@ public class ArrayTheme {
         return (int) (min + Math.random() * (max - min));
     }
 
-    private static void showArray(int[] intArr, int limit) {
-        for (int i = 0; i < intArr.length; i++) {
-            if (i > 0 && i % limit == 0) {
-                System.out.println();
-            }
-            System.out.printf("%d ", intArr[i]);
-        }
-        System.out.println();
-    }
-
     private static void sortArray(int[] ints) {
         for (int i = ints.length - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
@@ -146,10 +151,5 @@ public class ArrayTheme {
         }
     }
 
-    private static void showArray(String[] strings) {
-        for (String string : strings) {
-            System.out.print(string);
-        }
-        System.out.println();
-    }
+
 }
