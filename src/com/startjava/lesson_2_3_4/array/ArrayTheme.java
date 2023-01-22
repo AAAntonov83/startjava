@@ -7,62 +7,77 @@ public class ArrayTheme {
     public static void main(String[] args) {
         System.out.println("1. Реверс значений массива");
         int[] intsArr = {3, 1, 7, 6, 2, 5, 4};
-
+        int length = intsArr.length;
         showArray(intsArr);
 
-        for (int i = 0; i < intsArr.length / 2; i++) {
+        for (int i = 0; i < length / 2; i++) {
             int buffer = intsArr[i];
-            intsArr[i] = intsArr[(intsArr.length - 1) - i];
-            intsArr[(intsArr.length - 1) - i] = buffer;
+            intsArr[i] = intsArr[--length];
+            intsArr[length] = buffer;
         }
 
         showArray(intsArr);
 
         System.out.println("\n2. Вывод произведения элементов массива");
         intsArr = new int[10];
+        length = intsArr.length;
 
-        for (int i = 0; i < intsArr.length; i++) {
+        for (int i = 0; i < length; i++) {
             intsArr[i] = i;
         }
 
         int result = 1;
-        for (int i = 0; i < intsArr.length; i++) {
-            result = i > 0 && i < 9 ? result * i : result;
-            System.out.print(i == 0 ? intsArr[i] + " " + i + "\n": "");
-            System.out.print(i > 0 && i < 8 ? i + " * " : "");
-            System.out.print(i == 8 ? i : "");
-            System.out.print(i == 9 ? " = " + result + "\n" + intsArr[i] + " " + i + "\n": "");
+        int index0 = 0;
+        int index9 = 0;
+
+        for (int i = 0; i < length; i++) {
+            if (intsArr[i] == 0) {
+                index0 = i;
+                continue;
+            } else if (intsArr[i] == 9) {
+                index9 = i;
+                continue;
+            }
+
+            result *= i;
+            System.out.print(intsArr[i] < 8 ? intsArr[i] + " * " : intsArr[i] + " = " + result + "\n");
         }
+
+        System.out.printf("Индекс: %d, значение: %d%n", index0, intsArr[index0]);
+        System.out.printf("Индекс: %d, значение: %d%n", index9, intsArr[index9]);
 
         System.out.println("\n3. Удаление элементов массива");
         double[] doubleArr = new double[15];
+        length = doubleArr.length;
 
-        for (int i = 0; i < doubleArr.length; i++) {
+        for (int i = 0; i < length; i++) {
             doubleArr[i] = Math.random();
         }
 
         showArray(doubleArr, 8);
 
-        int middle = doubleArr.length / 2 + 1;
+        double centralNumber = doubleArr[length / 2 + 1];
         int zeroCounter = 0;
-        for (int i = 0; i < middle; i++) {
-            if (doubleArr[i] > doubleArr[middle]) {
+        for (int i = 0; i < length; i++) {
+            if (doubleArr[i] > centralNumber) {
                 doubleArr[i] = 0;
                 zeroCounter++;
             }
         }
 
-        showArray(doubleArr, 7);
-        System.out.println(zeroCounter);
+        showArray(doubleArr, 8);
+        System.out.println("Количество обнуленных ячеек: " + zeroCounter);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
         char[] chars = new char[26];
-        for (int i = 0; i < 26; i++) {
+        length = chars.length;
+
+        for (int i = 0; i < length; i++) {
             chars[i] = (char) (i + 65);
         }
 
-        for (int i = 0; i < chars.length; i++) {
-            for (int j = chars.length - 1; j >= (chars.length - 1) - i; j--) {
+        for (int i = 0; i < length; i++) {
+            for (int j = length - 1; j >= (length - 1) - i; j--) {
                 System.out.print(chars[j]);
             }
             System.out.println();
@@ -70,7 +85,9 @@ public class ArrayTheme {
 
         System.out.println("\n5. Генерация уникальных чисел");
         intsArr = new int[30];
-        for (int i = 0; i < intsArr.length; i++) {
+        length = intsArr.length;
+
+        for (int i = 0; i < length; i++) {
             int randomNumber = calculateRandom(60, 100);
             for (int j = 0; j < i; j++) {
                 if (intsArr[j] == randomNumber) {
@@ -87,6 +104,8 @@ public class ArrayTheme {
 
         System.out.println("\n6. Сдвиг элементов массива");
         String[] strings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        length = strings.length;
+
         int emptyNumber = 0;
         for (String string : strings) {
             if (string.isBlank()) {
@@ -94,8 +113,8 @@ public class ArrayTheme {
             }
         }
 
-        String[] stringsCopy = new String[strings.length - emptyNumber];
-        for (int i = 0, j = 0; i < strings.length; i++) {
+        String[] stringsCopy = new String[length - emptyNumber];
+        for (int i = 0, j = 0; i < length; i++) {
             if (!strings[i].isBlank()) {
                 System.arraycopy(strings, i, stringsCopy, j++, 1);
             }
