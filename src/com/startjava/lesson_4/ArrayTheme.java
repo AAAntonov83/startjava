@@ -40,7 +40,6 @@ public class ArrayTheme {
         }
 
         showArray(doubleArr, 8);
-        System.out.println();
 
         int middle = doubleArr.length / 2 + 1;
         int zeroCounter = 0;
