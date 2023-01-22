@@ -50,6 +50,7 @@ public class ArrayTheme {
                 zeroCounter++;
             }
         }
+
         showArray(doubleArr, 7);
         System.out.println(zeroCounter);
 
