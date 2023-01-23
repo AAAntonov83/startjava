@@ -27,24 +27,20 @@ public class ArrayTheme {
         }
 
         int result = 1;
-        int index0 = 0;
-        int index9 = 0;
 
         for (int i = 0; i < length; i++) {
-            if (intsArr[i] == 0) {
-                index0 = i;
+            String sign = " * ";
+            if (intsArr[i] == 0 ) {
                 continue;
-            } else if (intsArr[i] == 9) {
-                index9 = i;
-                continue;
+            } else if (intsArr[i] == intsArr[8]) {
+                sign = " = ";
             }
 
-            result *= i;
-            System.out.print(intsArr[i] < 8 ? intsArr[i] + " * " : intsArr[i] + " = " + result + "\n");
+            System.out.print(intsArr[i] <= intsArr[8] && (result *= i) > 0 ? intsArr[i] + sign : result);
         }
 
-        System.out.printf("Индекс: %d, значение: %d%n", index0, intsArr[index0]);
-        System.out.printf("Индекс: %d, значение: %d%n", index9, intsArr[index9]);
+        System.out.printf("\nИндекс: %d, значение: %d%n", 0, intsArr[0]);
+        System.out.printf("Индекс: %d, значение: %d%n", 9, intsArr[9]);
 
         System.out.println("\n3. Удаление элементов массива");
         double[] doubleArr = new double[15];
@@ -56,10 +52,10 @@ public class ArrayTheme {
 
         showArray(doubleArr, 8);
 
-        double centralNumber = doubleArr[length / 2 + 1];
+        double middleNumber = doubleArr[length / 2 + 1];
         int zeroCounter = 0;
         for (int i = 0; i < length; i++) {
-            if (doubleArr[i] > centralNumber) {
+            if (doubleArr[i] > middleNumber) {
                 doubleArr[i] = 0;
                 zeroCounter++;
             }
@@ -69,38 +65,37 @@ public class ArrayTheme {
         System.out.println("Количество обнуленных ячеек: " + zeroCounter);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] chars = new char[26];
-        length = chars.length;
+        char[] capitalLetters = new char[26];
+        length = capitalLetters.length;
 
         for (int i = 0; i < length; i++) {
-            chars[i] = (char) (i + 65);
+            capitalLetters[i] = (char) (i + 'A');
         }
 
         for (int i = 0; i < length; i++) {
             for (int j = length - 1; j >= (length - 1) - i; j--) {
-                System.out.print(chars[j]);
+                System.out.print(capitalLetters[j]);
             }
             System.out.println();
         }
 
         System.out.println("\n5. Генерация уникальных чисел");
-        intsArr = new int[30];
-        length = intsArr.length;
+        int[] uniqueNumbers = new int[30];
+        length = uniqueNumbers.length;
 
         for (int i = 0; i < length; i++) {
-            int randomNumber = calculateRandom(60, 100);
-            for (int j = 0; j < i; j++) {
-                if (intsArr[j] == randomNumber) {
-                    randomNumber = calculateRandom(60, 100);
-                    j = -1;
+            uniqueNumbers[i] = calculateRandom(60, 100);
+            for (int j = i - 1; j >= 0; j--) {
+                if (uniqueNumbers[j] == uniqueNumbers[i]) {
+                    i--;
+                    break;
                 }
             }
-            intsArr[i] = randomNumber;
         }
 
         //sortArray(intsArr);
-        Arrays.sort(intsArr);
-        showArray(intsArr, 10);
+        Arrays.sort(uniqueNumbers);
+        showArray(uniqueNumbers, 10);
 
         System.out.println("\n6. Сдвиг элементов массива");
         String[] strings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
