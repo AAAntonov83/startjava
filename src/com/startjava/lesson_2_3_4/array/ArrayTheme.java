@@ -69,7 +69,7 @@ public class ArrayTheme {
         length = capitalLetters.length;
 
         for (int i = 0; i < length; i++) {
-            capitalLetters[i] = (char) (i + 'A');
+            capitalLetters[i] = (char) ('A' + i);
         }
 
         for (int i = 0; i < length; i++) {
