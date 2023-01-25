@@ -28,15 +28,9 @@ public class ArrayTheme {
 
         int result = 1;
 
-        for (int i = 0; i < length; i++) {
-            String sign = " * ";
-            if (intsArr[i] == 0 ) {
-                continue;
-            } else if (intsArr[i] == intsArr[8]) {
-                sign = " = ";
-            }
-
-            System.out.print(intsArr[i] <= intsArr[8] && (result *= i) > 0 ? intsArr[i] + sign : result);
+        for (int i = 1; i < length - 1; i++) {
+            result *= i;
+            System.out.print(intsArr[i] + (i < length - 2 ? " * " : " = " + result));
         }
 
         System.out.printf("\nИндекс: %d, значение: %d%n", 0, intsArr[0]);
@@ -65,16 +59,16 @@ public class ArrayTheme {
         System.out.println("Количество обнуленных ячеек: " + zeroCounter);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] capitalLetters = new char[26];
-        length = capitalLetters.length;
+        char[] abc = new char[26];
+        length = abc.length;
 
         for (int i = 0; i < length; i++) {
-            capitalLetters[i] = (char) ('A' + i);
+            abc[i] = (char) ('A' + i);
         }
 
         for (int i = 0; i < length; i++) {
             for (int j = length - 1; j >= (length - 1) - i; j--) {
-                System.out.print(capitalLetters[j]);
+                System.out.print(abc[j]);
             }
             System.out.println();
         }
@@ -84,12 +78,20 @@ public class ArrayTheme {
         length = uniqueNumbers.length;
 
         for (int i = 0; i < length; i++) {
-            uniqueNumbers[i] = calculateRandom(60, 100);
+            boolean isUnique = true;
+            int uniqueNumber = calculateRandom(60, 100);
+
             for (int j = i - 1; j >= 0; j--) {
-                if (uniqueNumbers[j] == uniqueNumbers[i]) {
-                    i--;
+                if (uniqueNumbers[j] == uniqueNumber) {
+                    isUnique = false;
                     break;
                 }
+            }
+
+            if (isUnique) {
+                uniqueNumbers[i] = uniqueNumber;
+            } else {
+                i--;
             }
         }
 
@@ -98,25 +100,31 @@ public class ArrayTheme {
         showArray(uniqueNumbers, 10);
 
         System.out.println("\n6. Сдвиг элементов массива");
-        String[] strings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
-        length = strings.length;
+        String[] srcStrings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        length = srcStrings.length;
 
-        int emptyNumber = 0;
-        for (String string : strings) {
+        int emptyStringsNumber = 0;
+        for (String string : srcStrings) {
             if (string.isBlank()) {
-                emptyNumber++;
+                emptyStringsNumber++;
             }
         }
 
-        String[] stringsCopy = new String[length - emptyNumber];
-        for (int i = 0, j = 0; i < length; i++) {
-            if (!strings[i].isBlank()) {
-                System.arraycopy(strings, i, stringsCopy, j++, 1);
+        String[] destStrings = new String[length - emptyStringsNumber];
+
+        for (int i = 0, j = 0, k = 0; i < length; i++) {
+            boolean isBlank = srcStrings[i].isBlank();
+            if (isBlank && j > 0) {
+                System.arraycopy(srcStrings, i - j, destStrings, k, j);
+                k += j;
+                j = 0;
+            } else if (!isBlank) {
+                j++;
             }
         }
 
-        showArray(strings);
-        showArray(stringsCopy);
+        showArray(srcStrings);
+        showArray(destStrings);
     }
 
     private static void showArray(String[] strings) {
