@@ -21,7 +21,7 @@ public class CalculatorTest {
                         expression[0], expression[1], expression[2], result);
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]");
-            answer = scanner.nextLine().strip();
+            answer = scanner.nextLine();
         }
     }
 }
