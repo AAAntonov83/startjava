@@ -12,7 +12,7 @@ public class CalculatorTest {
             if (answer.equals("yes")) {
                 System.out.print("Введите математическое выражение: ");
                 String expString = scanner.nextLine();
-                String[] expression = expString.split("\s");
+                String[] expression = expString.split(" ");
                 Calculator calculator = new Calculator();
 
                 double result = calculator.calculate(Integer.parseInt(expression[0]),
