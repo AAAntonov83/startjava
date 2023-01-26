@@ -15,7 +15,7 @@ public class CalculatorTest {
 
                 try {
                     Calculator.calculate(expression);
-                } catch (IndexOutOfBoundsException e){
+                } catch (ArrayIndexOutOfBoundsException e){
                     System.out.println("Введено некорректное выражение.");
                     continue;
                 } catch (NumberFormatException e){
