@@ -9,7 +9,7 @@ public class Calculator {
         int factor2 = Integer.parseInt(expressionParts[2]);
         String operation = expressionParts[1];
 
-        if (factor1 < 0 || factor2 < 0) {
+        if (factor1 <= 0 || factor2 <= 0) {
             throw new Exception("Математические операции вычисляются только с положительными числами.");
         }
 
