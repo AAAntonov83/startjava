@@ -17,10 +17,13 @@ public class CalculatorTest {
                     Calculator.calculate(expression);
                 } catch (IndexOutOfBoundsException e){
                     System.out.println("Введено некорректное выражение.");
+                    continue;
                 } catch (NumberFormatException e){
                     System.out.println("Математические операции вычисляются только с целыми числами.");
+                    continue;
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
+                    continue;
                 }
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]");
