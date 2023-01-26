@@ -16,7 +16,7 @@ public class CalculatorTest {
                 try {
                     Calculator.calculate(expression);
                 } catch (IndexOutOfBoundsException e){
-                    System.out.println("Ввод некорректен.");
+                    System.out.println("Введено некорректное выражение.");
                 } catch (NumberFormatException e){
                     System.out.println("Математические операции вычисляются только с целыми числами.");
                 } catch (Exception e) {
