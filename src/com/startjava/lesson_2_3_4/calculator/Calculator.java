@@ -10,7 +10,7 @@ public class Calculator {
         String operation = expressionParts[1];
 
         if (factor1 < 0 || factor2 < 0) {
-            throw new Exception("Математические операции только с положительными числами.");
+            throw new Exception("Математические операции вычисляются только с положительными числами.");
         }
 
         double result = switch (operation) {
@@ -20,7 +20,7 @@ public class Calculator {
             case "/" -> (double) factor1 / factor2;
             case "^" -> Math.pow(factor1, factor2);
             case "%" -> Math.IEEEremainder(factor1, factor2);
-            default ->  throw new Exception("Введена неверная математическая операция");
+            default ->  throw new Exception("Введена неверная математическая операция: " + operation);
         };
 
         System.out.printf("%s %s %s = %" + (result % 1 > 0 ? ".3" : ".0") + "f%n",
