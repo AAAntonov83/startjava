@@ -2,28 +2,29 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    public static void calculate(String expression) throws Exception {
-
+    public static double calculate(String expression) throws NumberFormatException, UnsupportedOperationException {
         String[] expressionParts = expression.split(" ");
+
+        if (expressionParts.length != 3) {
+            throw new UnsupportedOperationException("Введено некорректное выражение.");
+        }
+
         int factor1 = Integer.parseInt(expressionParts[0]);
         int factor2 = Integer.parseInt(expressionParts[2]);
         String operation = expressionParts[1];
 
         if (factor1 <= 0 || factor2 <= 0) {
-            throw new Exception("Математические операции вычисляются только с положительными числами.");
+            throw new UnsupportedOperationException("Операции возможны только с положительными числами.");
         }
 
-        double result = switch (operation) {
+        return switch (operation) {
             case "+" -> Math.addExact(factor1, factor2);
             case "-" -> Math.subtractExact(factor1, factor2);
             case "*" -> Math.multiplyExact(factor1, factor2);
             case "/" -> (double) factor1 / factor2;
             case "^" -> Math.pow(factor1, factor2);
             case "%" -> Math.IEEEremainder(factor1, factor2);
-            default ->  throw new Exception("Введена неверная математическая операция: " + operation);
+            default ->  throw new UnsupportedOperationException("Введена неверная математическая операция");
         };
-
-        System.out.printf("%s %s %s = %" + (result % 1 > 0 ? ".3" : ".0") + "f%n",
-                factor1, operation, factor2, result);
     }
 }

@@ -14,16 +14,12 @@ public class CalculatorTest {
                 String expression = scanner.nextLine();
 
                 try {
-                    Calculator.calculate(expression);
-                } catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Введено некорректное выражение.");
-                    continue;
-                } catch (NumberFormatException e){
-                    System.out.println("Математические операции вычисляются только с целыми числами.");
-                    continue;
-                } catch (Exception e) {
+                    double result = Calculator.calculate(expression);
+                    System.out.printf("%s = %" + (result % 1 > 0 ? ".3" : ".0") + "f%n", expression, result);
+                } catch (NumberFormatException e) {
+                    System.out.println("Операции возможны только с целыми числами.");
+                } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
-                    continue;
                 }
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]");
