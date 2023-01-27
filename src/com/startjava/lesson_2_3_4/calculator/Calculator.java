@@ -4,11 +4,6 @@ public class Calculator {
 
     public static double calculate(String expression) throws NumberFormatException, UnsupportedOperationException {
         String[] expressionParts = expression.split(" ");
-
-        if (expressionParts.length != 3) {
-            throw new UnsupportedOperationException("Введено некорректное выражение.");
-        }
-
         int factor1 = Integer.parseInt(expressionParts[0]);
         int factor2 = Integer.parseInt(expressionParts[2]);
         String operation = expressionParts[1];
