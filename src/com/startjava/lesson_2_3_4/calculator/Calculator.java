@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    public static double calculate(String expression) throws NumberFormatException, UnsupportedOperationException {
+    public static double calculate(String expression) {
         String[] expressionParts = expression.split(" ");
         int factor1 = Integer.parseInt(expressionParts[0]);
         int factor2 = Integer.parseInt(expressionParts[2]);
