@@ -11,19 +11,20 @@ public class GuessNumberTest {
         Player player1 = new Player(name);
         
         System.out.print("Введите имя второго участника: ");
-        name = scanner.next();
+        name = scanner.nextLine();
         Player player2 = new Player(name);
 
+        System.out.println("У каждого игрока по 10 попыток.");
         String answer = "yes";
         GuessNumber game = new GuessNumber(player1, player2);
 
         while (!answer.equals("no")) {
-            game.start();
+            if (answer.equals("yes")) {
+                game.start();
+            }
 
-            do {
-                System.out.println("Хотите продолжить игру? [yes/no]");
-                answer = scanner.next();
-            } while (!answer.equals("yes") & !answer.equals("no"));
+            System.out.println("Хотите продолжить игру? [yes/no]");
+            answer = scanner.nextLine();
         }
     }
 }

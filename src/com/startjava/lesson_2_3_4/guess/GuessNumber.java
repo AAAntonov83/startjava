@@ -18,17 +18,21 @@ public class GuessNumber {
 
     public void start() {
         secretNumber = min + (int) (Math.random() * (max - min + 1));
+        player1.clearAnswers();
+        player2.clearAnswers();
 
-        while (true) {
+        while (player1.remainedAttempt() && player2.remainedAttempt()) {
             inputNumber(player1);
             if (guessNumber(player1)) {
                 break;
             }
             inputNumber(player2);
             if (guessNumber(player2)) {
-                return;
+                break;
             }
         }
+        player1.showAnswers();
+        player2.showAnswers();
     }
 
     private void inputNumber(Player player) {
@@ -37,8 +41,13 @@ public class GuessNumber {
 
         while (true) {
             int answer = scanner.nextInt();
+            scanner.nextLine();
+
             if (answer >= min && answer <= max) {
-                player.setNumber(answer);
+                player.addAnswer(answer);
+                if (!player.remainedAttempt()) {
+                    System.out.printf("У %s закончились попытки%n", player.getName());
+                }
                 return;
             }
             System.out.printf("Введите число в диапазоне [%d, %d]: ", min, max);
@@ -46,17 +55,16 @@ public class GuessNumber {
     }
 
     private boolean guessNumber(Player player) {
-        int number = player.getNumber();
+        int number = player.lastAnswer();
 
         if (number == secretNumber) {
-            System.out.printf("Игрок %s угадал число %d%n", player.getName(), secretNumber);
+            System.out.printf("Игрок %s угадал число %d c %d попытки%n",
+                    player.getName(), secretNumber, player.allAnswers().length);
             return true;
         }
-        if (number > secretNumber) {
-            System.out.printf("Число %d больше того, что загадал компьютер.%n", number);
-        } else {
-            System.out.printf("Число %d меньше того, что загадал компьютер.%n", number);
-        }
+
+        System.out.printf("Число %d " + (number > secretNumber ? "больше" : "меньше")
+                + " того, что загадал компьютер.%n", number);
         return false;
     }
 }
