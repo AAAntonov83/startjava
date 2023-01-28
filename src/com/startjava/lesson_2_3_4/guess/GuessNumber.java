@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private int secretNumber;
-    private int min = 1;
-    private int max = 100;
+    private final int min = 1;
+    private final int max = 100;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
