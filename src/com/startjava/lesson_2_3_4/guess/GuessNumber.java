@@ -31,8 +31,9 @@ public class GuessNumber {
                 break;
             }
         }
-        player1.showAnswers();
-        player2.showAnswers();
+
+        showAnswers(player1);
+        showAnswers(player2);
     }
 
     private void inputNumber(Player player) {
@@ -43,8 +44,7 @@ public class GuessNumber {
             int answer = scanner.nextInt();
             scanner.nextLine();
 
-            if (answer >= min && answer <= max) {
-                player.addAnswer(answer);
+            if (player.addAnswer(answer, min, max)) {
                 if (!player.remainedAttempt()) {
                     System.out.printf("У %s закончились попытки%n", player.getName());
                 }
@@ -55,16 +55,23 @@ public class GuessNumber {
     }
 
     private boolean guessNumber(Player player) {
-        int number = player.lastAnswer();
+        int number = player.getLastAnswer();
 
         if (number == secretNumber) {
             System.out.printf("Игрок %s угадал число %d c %d попытки%n",
-                    player.getName(), secretNumber, player.allAnswers().length);
+                    player.getName(), secretNumber, player.getAttemptsNumber());
             return true;
         }
 
         System.out.printf("Число %d " + (number > secretNumber ? "больше" : "меньше")
                 + " того, что загадал компьютер.%n", number);
         return false;
+    }
+
+    private void showAnswers(Player player) {
+        for (int answer : player.getAnswers()) {
+            System.out.printf("%3d", answer);
+        }
+        System.out.println();
     }
 }
