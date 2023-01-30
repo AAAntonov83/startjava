@@ -42,6 +42,7 @@ public class GuessNumber {
     }
 
     private void drawLots() {
+
         for (int i = players.length - 1; i >= 0; i--) {
             int randomIndex = (int) (Math.random() * (i + 1));
             if (randomIndex == i) {
