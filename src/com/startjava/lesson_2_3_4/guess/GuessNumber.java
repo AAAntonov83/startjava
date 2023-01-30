@@ -1,39 +1,60 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.lang.Math;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GuessNumber {
 
-    private final Player player1;
-    private final Player player2;
+    private Player[] players;
     private int secretNumber;
     private final int min = 1;
     private final int max = 100;
 
-    public GuessNumber(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public GuessNumber(Player... players) {
+        this.players = players;
     }
 
     public void start() {
         secretNumber = min + (int) (Math.random() * (max - min + 1));
-        player1.clearAnswers();
-        player2.clearAnswers();
+        drawLots();
 
-        while (player1.remainedAttempt() && player2.remainedAttempt()) {
-            inputNumber(player1);
-            if (guessNumber(player1)) {
-                break;
-            }
-            inputNumber(player2);
-            if (guessNumber(player2)) {
-                break;
+        boolean gameOver = false;
+        while (!gameOver) {
+            for (Player player : players) {
+                if (!player.remainedAttempt()) {
+                    gameOver = true;
+                    break;
+                }
+
+                inputNumber(player);
+
+                if (guessNumber(player)) {
+                    gameOver = true;
+                    break;
+                }
             }
         }
 
-        showAnswers(player1);
-        showAnswers(player2);
+        showAnswers();
+
+        for (Player player : players) {
+            player.clearAnswers();
+        }
+    }
+
+    private void drawLots() {
+        for (int i = players.length - 1; i >= 0; i--) {
+            int randomIndex = (int) (Math.random() * (i + 1));
+            if (randomIndex == i) {
+                continue;
+            }
+            Player tmp = players[randomIndex];
+            System.arraycopy(players, randomIndex + 1, players, randomIndex, i - randomIndex);
+            players[i] = tmp;
+        }
+
+        System.out.println("Брошен жребий.");
     }
 
     private void inputNumber(Player player) {
@@ -68,10 +89,12 @@ public class GuessNumber {
         return false;
     }
 
-    private void showAnswers(Player player) {
-        for (int answer : player.getAnswers()) {
-            System.out.printf("%3d", answer);
+    private void showAnswers() {
+        for (Player player : players) {
+            for (int answer : player.getAnswers()) {
+                System.out.printf("%3d", answer);
+            }
+            System.out.println();
         }
-        System.out.println();
     }
 }
