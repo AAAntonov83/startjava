@@ -37,10 +37,8 @@ public class GuessNumber {
         }
 
         showAnswers();
+        clearAnswers();
 
-        for (Player player : players) {
-            player.clearAnswers();
-        }
     }
 
     private void drawLots() {
@@ -95,6 +93,12 @@ public class GuessNumber {
                 System.out.printf("%3d", answer);
             }
             System.out.println();
+        }
+    }
+
+    private void clearAnswers() {
+        for (Player player : players) {
+            player.clearAnswers();
         }
     }
 }
