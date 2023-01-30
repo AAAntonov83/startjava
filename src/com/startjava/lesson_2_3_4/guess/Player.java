@@ -36,8 +36,8 @@ public class Player {
         return false;
     }
 
-    public boolean remainedAttempt() {
-        return attemptsNumber < answers.length;
+    public boolean attemptsEnded() {
+        return attemptsNumber == answers.length;
     }
 
     public void clearAnswers() {
