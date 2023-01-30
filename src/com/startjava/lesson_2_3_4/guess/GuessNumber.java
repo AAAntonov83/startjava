@@ -114,6 +114,7 @@ public class GuessNumber {
             player.clearAnswers();
         }
     }
+
     public void showWinner() {
         Player winner = getWinner();
         System.out.printf("В игре %s.%n", winner == null ? "никто не победил" :  "победил " + winner.getName());
