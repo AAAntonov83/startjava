@@ -42,14 +42,15 @@ public class GuessNumber {
     }
 
     private void drawLots() {
-        for (int i = players.length - 1; i >= 0; i--) {
+        int length = players.length - 1;
+        for (int i = length; i >= 0; i--) {
             int randomIndex = (int) (Math.random() * (i + 1));
-            if (randomIndex == players.length - 1) {
+            if (randomIndex == length) {
                 continue;
             }
             Player tmp = players[randomIndex];
-            System.arraycopy(players, randomIndex + 1, players, randomIndex, players.length - 1 - randomIndex);
-            players[players.length - 1] = tmp;
+            System.arraycopy(players, randomIndex + 1, players, randomIndex, length - randomIndex);
+            players[length] = tmp;
         }
 
         System.out.println("Брошен жребий.");
