@@ -37,7 +37,6 @@ public class GuessNumber {
 
         showAnswers();
         clearAnswers();
-
     }
 
     private void drawLots() {
