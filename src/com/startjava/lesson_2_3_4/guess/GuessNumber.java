@@ -48,9 +48,9 @@ public class GuessNumber {
             if (randomIndex == length) {
                 continue;
             }
-            Player tmp = players[randomIndex];
+            Player next = players[randomIndex];
             System.arraycopy(players, randomIndex + 1, players, randomIndex, length - randomIndex);
-            players[length] = tmp;
+            players[length] = next;
         }
 
         System.out.println("Брошен жребий.");
