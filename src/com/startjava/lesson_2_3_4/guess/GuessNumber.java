@@ -1,12 +1,11 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.lang.Math;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class GuessNumber {
 
-    private Player[] players;
+    private final Player[] players;
     private int secretNumber;
     private final int min = 1;
     private final int max = 100;
