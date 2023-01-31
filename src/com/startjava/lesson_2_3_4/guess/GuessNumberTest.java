@@ -7,21 +7,15 @@ public class GuessNumberTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите имя первого участника: ");
-        String name = scanner.nextLine();
-        Player player1 = new Player(name);
+        Player[] players = new Player[3];
+        for (int i = 0; i < players.length; i++) {
+            System.out.printf("Введите имя участника №%d: ", i + 1);
+            String name = scanner.nextLine();
+            players[i] = new Player(name);
+        }
 
-        System.out.print("Введите имя второго участника: ");
-        name = scanner.nextLine();
-        Player player2 = new Player(name);
-
-        System.out.print("Введите имя третьего участника: ");
-        name = scanner.nextLine();
-        Player player3 = new Player(name);
-
-        System.out.println("У каждого игрока по 10 попыток.");
         String answer = "yes";
-        GuessNumber game = new GuessNumber(player1, player2, player3);
+        GuessNumber game = new GuessNumber(players);
 
         while (!answer.equals("no")) {
             if (answer.equals("yes")) {

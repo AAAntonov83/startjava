@@ -5,43 +5,57 @@ import java.util.Arrays;
 public class Player {
 
     private final String name;
-    private int attemptsNumber;
+    private int numberAttempts;
+    private int winPoints;
     private final int[] answers = new int[10];
 
     public Player(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public int getNumberAttempts() {
+        return numberAttempts;
     }
 
-    public int getAttemptsNumber() {
-        return attemptsNumber;
+    public int getWinPoints() {
+        return winPoints;
     }
 
     public int[] getAnswers() {
-        return Arrays.copyOf(answers, attemptsNumber);
+        return Arrays.copyOf(answers, numberAttempts);
     }
 
     public int getLastAnswer() {
-        return answers[attemptsNumber - 1];
+        return answers[numberAttempts - 1];
     }
 
     public boolean addAnswer(int answer, int min, int max) {
         if (answer >= min && answer <= max) {
-            answers[attemptsNumber++] = answer;
+            answers[numberAttempts++] = answer;
             return true;
         }
         return false;
     }
 
-    public boolean attemptsEnded() {
-        return attemptsNumber == answers.length;
+    public void addWinPoints() {
+        winPoints++;
+    }
+
+    public void resetWinPoints() {
+        winPoints = 0;
+    }
+
+    public boolean isAttemptsEnded() {
+        return answers.length == numberAttempts;
     }
 
     public void clearAnswers() {
-        Arrays.fill(answers, 0, attemptsNumber, 0);
-        attemptsNumber = 0;
+        Arrays.fill(answers, 0, numberAttempts, 0);
+        numberAttempts = 0;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

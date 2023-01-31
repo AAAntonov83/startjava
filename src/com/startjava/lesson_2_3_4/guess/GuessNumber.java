@@ -6,39 +6,36 @@ import java.util.Scanner;
 public class GuessNumber {
 
     private final Player[] players;
-    private final Player[] winners;
     private int secretNumber;
     private final int min = 1;
     private final int max = 100;
     private final int maxRounds = 3;
-    private int currentRound;
+    private int currentRound = 1;
 
     public GuessNumber(Player... players) {
         this.players = players;
-        winners = new Player[maxRounds];
     }
 
     public void start() {
-        currentRound = 1;
+        secretNumber = min + (int) (Math.random() * (max - min + 1));
+        System.out.println("У каждого игрока по 10 попыток.");
         drawLots();
-        startRound();
 
         while (currentRound <= maxRounds) {
             for (Player player : players) {
-                if (player.attemptsEnded()) {
+                if (player.isAttemptsEnded()) {
                     finishRound();
                     break;
                 }
                 inputNumber(player);
                 if (guessNumber(player)) {
-                    winners[currentRound - 1] = player;
                     finishRound();
                     break;
                 }
             }
         }
 
-        showWinner();
+        finishGame();
     }
 
     private void drawLots() {
@@ -48,33 +45,10 @@ public class GuessNumber {
                 continue;
             }
             Player tmp = players[randomIndex];
-            System.arraycopy(players, randomIndex + 1, players, randomIndex, i - randomIndex);
+            players[randomIndex] = players[i];
             players[i] = tmp;
         }
-
-        System.out.println("Брошен жребий.");
-    }
-
-    private void inputNumber(Player player) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("%s называет число: ", player.getName());
-
-        while (true) {
-            int answer = scanner.nextInt();
-            scanner.nextLine();
-
-            if (player.addAnswer(answer, min, max)) {
-                if (player.attemptsEnded()) {
-                    System.out.printf("У %s закончились попытки%n", player.getName());
-                }
-                return;
-            }
-            System.out.printf("Введите число в диапазоне [%d, %d]: ", min, max);
-        } 
-    }
-
-    private void startRound() {
-        secretNumber = min + (int) (Math.random() * (max - min + 1));
+        System.out.println("Игроками брошен жребий.");
     }
 
     private void finishRound() {
@@ -82,7 +56,25 @@ public class GuessNumber {
         showAnswers();
         clearAnswers();
         if (currentRound <= maxRounds) {
-            startRound();
+            secretNumber = min + (int) (Math.random() * (max - min + 1));
+        }
+    }
+
+    private void inputNumber(Player player) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("%s называет число: ", player);
+
+        while (true) {
+            int answer = scanner.nextInt();
+            scanner.nextLine();
+
+            if (player.addAnswer(answer, min, max)) {
+                if (player.isAttemptsEnded()) {
+                    System.out.printf("У %s закончились попытки%n", player);
+                }
+                return;
+            }
+            System.out.printf("Введите число в диапазоне [%d, %d]: ", min, max);
         }
     }
 
@@ -91,7 +83,8 @@ public class GuessNumber {
 
         if (number == secretNumber) {
             System.out.printf("Игрок %s угадал число %d c %d попытки%n",
-                    player.getName(), secretNumber, player.getAttemptsNumber());
+                    player, secretNumber, player.getNumberAttempts());
+            player.addWinPoints();
             return true;
         }
 
@@ -115,41 +108,47 @@ public class GuessNumber {
         }
     }
 
-    public void showWinner() {
-        Player winner = getWinner();
-        System.out.printf("В игре %s.%n", winner == null ? "никто не победил" :  "победил " + winner.getName());
+    private void finishGame() {
+        currentRound = 1;
+        showWinner();
+        resetPlayersWinPoints();
     }
 
-    private Player getWinner() {
-        //Определяем кол-во побед игроков и макс. кол-во побед
-        int[] points = new int[maxRounds];
-        int maxPoints = 0;
-        for (int i = 0; i < players.length; i++) {
-            for (Player winner : winners) {
-                if (players[i] == winner) {
-                    points[i]++;
+    private void showWinner() {
+        Player winner = determineWinner();
+        System.out.printf("В игре по итогам %d раундов %s.%n",
+                maxRounds, winner == null ? "никто не победил" : "победил " + winner);
+    }
+
+    private void resetPlayersWinPoints() {
+        for (Player player : players) {
+            player.resetWinPoints();
+        }
+    }
+
+    public Player determineWinner() {
+        Player winner = null;
+
+        for (int i = maxRounds; i >= 0; i--) {
+            if (winner != null) {
+                return winner;
+            }
+
+            for (Player player : players) {
+                if (player.getWinPoints() != i) {
+                    continue;
+                }
+                if (i >= maxRounds / 2 + 1) {
+                    return player;
+                }
+                if (winner == null) {
+                    winner = player;
+                } else {
+                    return null;
                 }
             }
-            maxPoints = Math.max(maxPoints, points[i]);
         }
 
-        if (maxPoints == 0) {
-            return null;
-        }
-
-        //Количество игроков с максимальным количеством побед
-        int maxPointsNumber = 0;
-        int winnerIndex = 0;
-        for (int i = 0; i < points.length; i++) {
-            if (points[i] == maxPoints) {
-                maxPointsNumber++;
-                winnerIndex = i;
-            }
-        }
-        if (maxPointsNumber > 1) {
-            return null;
-        }
-
-        return players[winnerIndex];
+        return winner;
     }
 }
