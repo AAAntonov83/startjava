@@ -46,10 +46,6 @@ public class Player {
         return answers.length > numberAttempts;
     }
 
-    public void resetAttempts() {
-        numberAttempts = 0;
-    }
-
     public void upScore() {
         score++;
     }

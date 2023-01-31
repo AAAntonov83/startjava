@@ -24,7 +24,6 @@ public class GuessNumber {
             playRound();
             showAnswers();
             clearAnswers();
-            resetAttempts();
         }
 
         showWinner();
@@ -65,12 +64,6 @@ public class GuessNumber {
     private void clearAnswers() {
         for (Player player : players) {
             player.clearAnswers();
-        }
-    }
-
-    private void resetAttempts() {
-        for (Player player : players) {
-            player.resetAttempts();
         }
     }
 
