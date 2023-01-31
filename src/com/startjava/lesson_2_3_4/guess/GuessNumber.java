@@ -60,6 +60,21 @@ public class GuessNumber {
         }
     }
 
+    private void showAnswers() {
+        for (Player player : players) {
+            for (int answer : player.getAnswers()) {
+                System.out.printf("%3d", answer);
+            }
+            System.out.println();
+        }
+    }
+
+    private void clearAnswers() {
+        for (Player player : players) {
+            player.clearAnswers();
+        }
+    }
+
     private void inputNumber(Player player) {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("%s называет число: ", player);
@@ -93,21 +108,6 @@ public class GuessNumber {
         return false;
     }
 
-    private void showAnswers() {
-        for (Player player : players) {
-            for (int answer : player.getAnswers()) {
-                System.out.printf("%3d", answer);
-            }
-            System.out.println();
-        }
-    }
-
-    private void clearAnswers() {
-        for (Player player : players) {
-            player.clearAnswers();
-        }
-    }
-
     private void finishGame() {
         currentRound = 1;
         showWinner();
@@ -118,12 +118,6 @@ public class GuessNumber {
         Player winner = determineWinner();
         System.out.printf("В игре по итогам %d раундов %s.%n",
                 maxRounds, winner == null ? "никто не победил" : "победил " + winner);
-    }
-
-    private void resetPlayersWinPoints() {
-        for (Player player : players) {
-            player.resetWinPoints();
-        }
     }
 
     public Player determineWinner() {
@@ -151,4 +145,11 @@ public class GuessNumber {
 
         return winner;
     }
+
+    private void resetPlayersWinPoints() {
+        for (Player player : players) {
+            player.resetWinPoints();
+        }
+    }
+
 }
