@@ -6,7 +6,7 @@ public class Player {
 
     private final String name;
     private int numberAttempts;
-    private int winPoints;
+    private int score;
     private final int[] answers = new int[10];
 
     public Player(String name) {
@@ -17,8 +17,8 @@ public class Player {
         return numberAttempts;
     }
 
-    public int getWinPoints() {
-        return winPoints;
+    public int getScore() {
+        return score;
     }
 
     public int[] getAnswers() {
@@ -37,21 +37,25 @@ public class Player {
         return false;
     }
 
-    public void addWinPoints() {
-        winPoints++;
-    }
-
-    public void resetWinPoints() {
-        winPoints = 0;
-    }
-
-    public boolean isAttemptsEnded() {
-        return answers.length == numberAttempts;
-    }
-
     public void clearAnswers() {
         Arrays.fill(answers, 0, numberAttempts, 0);
         numberAttempts = 0;
+    }
+
+    public boolean hasAttempts() {
+        return answers.length > numberAttempts;
+    }
+
+    public void resetAttempts() {
+        numberAttempts = 0;
+    }
+
+    public void upScore() {
+        score++;
+    }
+
+    public void resetScore() {
+        score = 0;
     }
 
     @Override
