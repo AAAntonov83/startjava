@@ -67,8 +67,8 @@ public class Bookshelf {
     }
 
     private void recalculateLength() {
+        length = 0;
         if (numberBooks == 0) {
-            length = 0;
             return;
         }
 

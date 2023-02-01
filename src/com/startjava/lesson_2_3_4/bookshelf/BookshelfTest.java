@@ -23,11 +23,9 @@ public class BookshelfTest {
             showMenu();
 
             System.out.print("Выберите пункт меню: ");
-            int action = scanner.nextInt();
-            scanner.nextLine();
 
-            switch (action) {
-                case 1 -> {
+            switch (scanner.nextLine().strip()) {
+                case "1" -> {
                     System.out.print("Введите название книги: ");
                     try {
                         bookshelf.takeBook(scanner.nextLine().strip());
@@ -35,7 +33,7 @@ public class BookshelfTest {
                         System.out.println(e.getMessage());
                     }
                 }
-                case 2 -> {
+                case "2" -> {
                     System.out.print("Какую книгу положите (автор, название, год издания)?: ");
                     try {
                         bookshelf.addBook(new Book(scanner.nextLine().strip()));
@@ -43,7 +41,7 @@ public class BookshelfTest {
                         System.out.println(e.getMessage());
                     }
                 }
-                case 3 -> {
+                case "3" -> {
                     System.out.print("Введите название книги: ");
                     try {
                         System.out.println(bookshelf.findBook(scanner.nextLine().strip()));
@@ -51,14 +49,14 @@ public class BookshelfTest {
                         System.out.println(e.getMessage());
                     }
                 }
-                case 4 -> {
+                case "4" -> {
                     try {
                         bookshelf.clear();
                     } catch (UnsupportedOperationException e) {
                         System.out.println(e.getMessage());
                     }
                 }
-                case 5 -> {
+                case "5" -> {
                     return;
                 }
                 default -> System.out.println("Некорректная операция.");
