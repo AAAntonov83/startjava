@@ -34,7 +34,10 @@ public class Bookshelf {
         books[books.length - numberFreeShelves] = book;
         numberBooks++;
         countNumberFreeShelves();
-        length = Math.max(length, book.getDescriptionLength());
+
+        if (length < book.getDescriptionLength()) {
+            countLength();
+        }
     }
 
     public String findBook(String title) {

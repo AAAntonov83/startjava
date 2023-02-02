@@ -81,7 +81,6 @@ public class BookshelfTest {
 
     private static void showBooks(Bookshelf bookshelf) {
         int bookshelfLength = bookshelf.getLength();
-        int freeBookShelf = bookshelf.getNumberFreeShelves();
         Book[] books = bookshelf.getBooks();
         String shelfBottom = "-".repeat(bookshelfLength);
         String shelfSample = """
@@ -94,7 +93,7 @@ public class BookshelfTest {
             System.out.printf(shelfSample, title, shelfBottom);
         }
 
-        if (freeBookShelf > 0 && books.length > 0) {
+        if (books.length > 0 && bookshelf.getNumberFreeShelves() > 0) {
             String title = " ".repeat(bookshelfLength);
             System.out.printf(shelfSample, title, shelfBottom);
         }
