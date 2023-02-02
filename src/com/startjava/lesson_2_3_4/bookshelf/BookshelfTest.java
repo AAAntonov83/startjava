@@ -16,7 +16,7 @@ public class BookshelfTest {
                 System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу.");
             } else {
                 System.out.printf("В шкафу %d книги. Свободно %d полок.%n",
-                        booksNumber, bookshelf.calculateNumberFreeShelves());
+                        booksNumber, bookshelf.getNumberFreeShelves());
             }
 
             showBooks(bookshelf);
@@ -81,7 +81,7 @@ public class BookshelfTest {
 
     private static void showBooks(Bookshelf bookshelf) {
         int bookshelfLength = bookshelf.getLength();
-        int freeBookShelf = bookshelf.calculateNumberFreeShelves();
+        int freeBookShelf = bookshelf.getNumberFreeShelves();
         Book[] books = bookshelf.getBooks();
         String shelfBottom = "-".repeat(bookshelfLength);
         String shelfSample = """

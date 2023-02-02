@@ -4,29 +4,36 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
+    private final int MAX_BOOKS = 10;
     private int numberBooks;
-    private final Book[] books = new Book[10];
+    private int numberFreeShelves = MAX_BOOKS;
     private int length;
+    private final Book[] books = new Book[MAX_BOOKS];
 
     public int getNumberBooks() {
         return numberBooks;
     }
 
-    public Book[] getBooks() {
-        return Arrays.copyOf(books, numberBooks);
+    public int getNumberFreeShelves() {
+        return numberFreeShelves;
     }
 
     public int getLength() {
         return length;
     }
 
+    public Book[] getBooks() {
+        return Arrays.copyOf(books, numberBooks);
+    }
+
     public void addBook(Book book) {
-        if (calculateNumberFreeShelves() == 0) {
+        if (numberFreeShelves == 0) {
             throw new UnsupportedOperationException("В шкафу нет свободных мест.");
         }
 
-        books[books.length - calculateNumberFreeShelves()] = book;
+        books[books.length - numberFreeShelves] = book;
         numberBooks++;
+        countNumberFreeShelves();
         length = Math.max(length, book.getDescriptionLength());
     }
 
@@ -39,16 +46,18 @@ public class Bookshelf {
     }
 
     public void takeBook(String title) {
-        int shelfIndex = determineShelfIndex(title);
-        int bookLength = books[shelfIndex].getDescriptionLength();
-        books[shelfIndex] = null;
+        int bookIndex = determineShelfIndex(title);
+        int bookLength = books[bookIndex].getDescriptionLength();
+        books[bookIndex] = null;
 
-        if (shelfIndex < books.length - 1) {
-            System.arraycopy(books, shelfIndex + 1, books, shelfIndex, --numberBooks - shelfIndex);
+        if (bookIndex < books.length - 1) {
+            System.arraycopy(books, bookIndex + 1, books, bookIndex, --numberBooks - bookIndex);
         }
 
+        countNumberFreeShelves();
+
         if (length == bookLength) {
-            recalculateLength();
+            countLength();
         }
     }
 
@@ -59,14 +68,14 @@ public class Bookshelf {
 
         Arrays.fill(books, 0, numberBooks, null);
         numberBooks = 0;
-        recalculateLength();
+        countLength();
     }
 
-    public int calculateNumberFreeShelves() {
-        return books.length - numberBooks;
+    private void countNumberFreeShelves() {
+        numberFreeShelves = books.length - numberBooks;
     }
 
-    private void recalculateLength() {
+    private void countLength() {
         length = 0;
         if (numberBooks == 0) {
             return;
