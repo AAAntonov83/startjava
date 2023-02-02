@@ -11,7 +11,7 @@ public class Book {
         this.author = bookInfo[0];
         this.title = bookInfo[1];
         this.year = bookInfo[2];
-        this.descriptionLength = this.toString().length();
+        this.descriptionLength = toString().length();
     }
 
     public String getTitle() {
