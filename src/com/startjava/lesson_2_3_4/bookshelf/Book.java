@@ -8,9 +8,9 @@ public class Book {
 
     public Book(String description) {
         String[] bookInfo = description.split(", ");
-        this.author = bookInfo[0];
-        this.title = bookInfo[1];
-        this.year = bookInfo[2];
+        this.author = bookInfo[0].strip();
+        this.title = bookInfo[1].strip();
+        this.year = bookInfo[2].strip();
         this.descriptionLength = toString().length();
     }
 
