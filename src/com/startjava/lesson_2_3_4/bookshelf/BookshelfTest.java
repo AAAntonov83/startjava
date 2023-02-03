@@ -10,7 +10,7 @@ public class BookshelfTest {
         do {
             showBooks(bookshelf);
             showMenu();
-        } while (selectMenuItem(bookshelf));
+        } while (selectAction(bookshelf));
     }
 
     private static void showBooks(Bookshelf bookshelf) {
@@ -54,7 +54,7 @@ public class BookshelfTest {
         System.out.print(menu);
     }
 
-    private static boolean selectMenuItem(Bookshelf bookshelf) {
+    private static boolean selectAction(Bookshelf bookshelf) {
         System.out.print("Выберите пункт меню: ");
         Scanner scanner = new Scanner(System.in);
 
