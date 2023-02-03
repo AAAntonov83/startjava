@@ -10,7 +10,7 @@ public class BookshelfTest {
         do {
             showBooks(bookshelf);
             showMenu();
-        } while (selectAction(bookshelf));
+        } while (performAction(bookshelf, selectAction()));
     }
 
     private static void showBooks(Bookshelf bookshelf) {
@@ -54,11 +54,16 @@ public class BookshelfTest {
         System.out.print(menu);
     }
 
-    private static boolean selectAction(Bookshelf bookshelf) {
+    private static String selectAction() {
         System.out.print("Выберите пункт меню: ");
         Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine().strip();
+    }
 
-        switch (scanner.nextLine().strip()) {
+    private static boolean performAction(Bookshelf bookshelf, String action) {
+        Scanner scanner = new Scanner(System.in);
+
+        switch (action) {
             case "1" -> {
                 System.out.print("Введите название удаляемой книги: ");
                 try {
