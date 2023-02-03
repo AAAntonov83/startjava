@@ -7,12 +7,10 @@ public class BookshelfTest {
     public static void main(String[] args) {
         Bookshelf bookshelf = new Bookshelf();
 
-        boolean isContinue = true;
-        while (isContinue) {
+        do {
             showBooks(bookshelf);
             showMenu();
-            isContinue = selectMenuItem(bookshelf);
-        }
+        } while (selectMenuItem(bookshelf));
     }
 
     private static void showBooks(Bookshelf bookshelf) {
