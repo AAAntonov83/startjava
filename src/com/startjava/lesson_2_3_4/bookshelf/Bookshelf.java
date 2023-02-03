@@ -6,7 +6,7 @@ public class Bookshelf {
 
     private final int MAX_BOOKS = 10;
     private int numberBooks;
-    private int numberFreeShelves = MAX_BOOKS;
+    private int countEmptyShelves = MAX_BOOKS;
     private int length;
     private final Book[] books = new Book[MAX_BOOKS];
 
@@ -14,8 +14,8 @@ public class Bookshelf {
         return numberBooks;
     }
 
-    public int getNumberFreeShelves() {
-        return numberFreeShelves;
+    public int getCountEmptyShelves() {
+        return countEmptyShelves;
     }
 
     public int getLength() {
@@ -27,13 +27,13 @@ public class Bookshelf {
     }
 
     public void addBook(Book book) {
-        if (numberFreeShelves == 0) {
+        if (countEmptyShelves == 0) {
             throw new UnsupportedOperationException("В шкафу нет свободных мест.");
         }
 
-        books[books.length - numberFreeShelves] = book;
+        books[numberBooks] = book;
         numberBooks++;
-        countNumberFreeShelves();
+        calculateEmptyShelves();
 
         if (length < book.getDescriptionLength()) {
             countLength();
@@ -57,7 +57,7 @@ public class Bookshelf {
             System.arraycopy(books, bookIndex + 1, books, bookIndex, --numberBooks - bookIndex);
         }
 
-        countNumberFreeShelves();
+        calculateEmptyShelves();
 
         if (length == bookLength) {
             countLength();
@@ -74,8 +74,8 @@ public class Bookshelf {
         countLength();
     }
 
-    private void countNumberFreeShelves() {
-        numberFreeShelves = books.length - numberBooks;
+    private void calculateEmptyShelves() {
+        countEmptyShelves = books.length - numberBooks;
     }
 
     private void countLength() {
