@@ -60,7 +60,7 @@ public class BookshelfTest {
 
         switch (scanner.nextLine().strip()) {
             case "1" -> {
-                System.out.print("Введите название книги: ");
+                System.out.print("Введите название удаляемой книги: ");
                 try {
                     bookshelf.takeBook(scanner.nextLine().strip());
                 } catch (UnsupportedOperationException e) {
