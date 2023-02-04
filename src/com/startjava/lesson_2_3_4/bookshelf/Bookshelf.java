@@ -26,8 +26,7 @@ public class Bookshelf {
             throw new UnsupportedOperationException("В шкафу нет свободных мест.");
         }
 
-        books[numberBooks] = book;
-        numberBooks++;
+        books[numberBooks++] = book;
         length = Math.max(length, book.getDescriptionLength());
     }
 
