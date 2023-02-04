@@ -3,18 +3,21 @@ package com.startjava.lesson_2_3_4.bookshelf;
 import java.util.Scanner;
 
 public class BookshelfTest {
+    private static Scanner scanner;
 
     public static void main(String[] args) {
         Bookshelf bookshelf = new Bookshelf();
+        scanner = new Scanner(System.in);
 
         do {
             showBooks(bookshelf);
             showMenu();
-        } while (performAction(bookshelf, selectAction()));
+        } while (doAction(bookshelf, selectAction()));
     }
 
     private static void showBooks(Bookshelf bookshelf) {
         int booksNumber = bookshelf.getNumberBooks();
+        int emptyShelves = bookshelf.calculateEmptyShelves();
 
         if (booksNumber == 0) {
             System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу.");
@@ -22,7 +25,7 @@ public class BookshelfTest {
         }
 
         System.out.printf("В шкафу %d книги. Свободно %d полок.%n",
-                booksNumber, bookshelf.getCountEmptyShelves());
+                booksNumber, emptyShelves);
 
         int bookshelfLength = bookshelf.getLength();
         Book[] books = bookshelf.getBooks();
@@ -37,37 +40,33 @@ public class BookshelfTest {
             System.out.printf(shelfSample, title, shelfBottom);
         }
 
-        if (booksNumber > 0 && bookshelf.getCountEmptyShelves() > 0) {
+        if (booksNumber > 0 && emptyShelves > 0) {
             String title = " ".repeat(bookshelfLength);
             System.out.printf(shelfSample, title, shelfBottom);
         }
     }
 
     private static void showMenu() {
-        String menu = """
+        System.out.print("""
                 1. Удалить книгу
                 2. Положить книгу
                 3. Найти книгу
                 4. Очистить полку
                 5. Выйти
-                """;
-        System.out.print(menu);
+                """);
     }
 
     private static String selectAction() {
         System.out.print("Выберите пункт меню: ");
-        Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().strip();
     }
 
-    private static boolean performAction(Bookshelf bookshelf, String action) {
-        Scanner scanner = new Scanner(System.in);
-
+    private static boolean doAction(Bookshelf bookshelf, String action) {
         switch (action) {
             case "1" -> {
                 System.out.print("Введите название удаляемой книги: ");
                 try {
-                    bookshelf.takeBook(scanner.nextLine().strip());
+                    bookshelf.delete(scanner.nextLine().strip());
                 } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
                 }
@@ -75,7 +74,7 @@ public class BookshelfTest {
             case "2" -> {
                 System.out.print("Какую книгу положите (автор, название, год издания)?: ");
                 try {
-                    bookshelf.addBook(new Book(scanner.nextLine().strip()));
+                    bookshelf.add(new Book(scanner.nextLine().strip()));
                 } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
                 }
@@ -83,7 +82,7 @@ public class BookshelfTest {
             case "3" -> {
                 System.out.print("Введите название искомой книги: ");
                 try {
-                    System.out.println(bookshelf.findBook(scanner.nextLine().strip()));
+                    System.out.println(bookshelf.find(scanner.nextLine().strip()));
                 } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
                 }

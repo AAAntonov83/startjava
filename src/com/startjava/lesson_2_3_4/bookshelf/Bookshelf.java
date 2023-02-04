@@ -6,16 +6,11 @@ public class Bookshelf {
 
     private final int MAX_BOOKS = 10;
     private int numberBooks;
-    private int countEmptyShelves = MAX_BOOKS;
     private int length;
     private final Book[] books = new Book[MAX_BOOKS];
 
     public int getNumberBooks() {
         return numberBooks;
-    }
-
-    public int getCountEmptyShelves() {
-        return countEmptyShelves;
     }
 
     public int getLength() {
@@ -26,30 +21,26 @@ public class Bookshelf {
         return Arrays.copyOf(books, numberBooks);
     }
 
-    public void addBook(Book book) {
-        if (countEmptyShelves == 0) {
+    public void add(Book book) {
+        if (calculateEmptyShelves() == 0) {
             throw new UnsupportedOperationException("В шкафу нет свободных мест.");
         }
 
         books[numberBooks] = book;
         numberBooks++;
-        calculateEmptyShelves();
-
-        if (length < book.getDescriptionLength()) {
-            countLength();
-        }
+        length = Math.max(length, book.getDescriptionLength());
     }
 
-    public String findBook(String title) {
+    public String find(String title) {
         if (numberBooks == 0) {
             throw new UnsupportedOperationException("Шкаф пуст.");
         }
 
-        return books[determineShelfIndex(title)].toString();
+        return books[findPosition(title)].toString();
     }
 
-    public void takeBook(String title) {
-        int bookIndex = determineShelfIndex(title);
+    public void delete(String title) {
+        int bookIndex = findPosition(title);
         int bookLength = books[bookIndex].getDescriptionLength();
         books[bookIndex] = null;
 
@@ -57,10 +48,8 @@ public class Bookshelf {
             System.arraycopy(books, bookIndex + 1, books, bookIndex, --numberBooks - bookIndex);
         }
 
-        calculateEmptyShelves();
-
         if (length == bookLength) {
-            countLength();
+            calculateLength();
         }
     }
 
@@ -71,14 +60,14 @@ public class Bookshelf {
 
         Arrays.fill(books, 0, numberBooks, null);
         numberBooks = 0;
-        countLength();
+        calculateLength();
     }
 
-    private void calculateEmptyShelves() {
-        countEmptyShelves = books.length - numberBooks;
+    public int calculateEmptyShelves() {
+        return MAX_BOOKS - numberBooks;
     }
 
-    private void countLength() {
+    private void calculateLength() {
         length = 0;
         if (numberBooks == 0) {
             return;
@@ -89,7 +78,7 @@ public class Bookshelf {
         }
     }
 
-    private int determineShelfIndex(String title) {
+    private int findPosition(String title) {
         for (int i = 0; i < numberBooks; i++) {
             if (books[i].getTitle().equals(title)) {
                 return i;
