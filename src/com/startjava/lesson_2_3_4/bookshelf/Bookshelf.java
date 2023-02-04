@@ -36,11 +36,21 @@ public class Bookshelf {
             throw new UnsupportedOperationException("Шкаф пуст.");
         }
 
-        return books[findPosition(title)].toString();
+        int bookIndex = findPosition(title);
+        if (bookIndex < 0) {
+            throw new UnsupportedOperationException("Книги с таким названием в шкафу нет.");
+        }
+
+        return books[bookIndex].toString();
     }
 
     public void delete(String title) {
         int bookIndex = findPosition(title);
+
+        if (bookIndex < 0) {
+            throw new UnsupportedOperationException("Книги с таким названием в шкафу нет.");
+        }
+
         int bookLength = books[bookIndex].getDescriptionLength();
         books[bookIndex] = null;
 
@@ -84,7 +94,6 @@ public class Bookshelf {
                 return i;
             }
         }
-
-        throw new UnsupportedOperationException("Книги с таким названием в шкафу нет.");
+        return -1;
     }
 }
