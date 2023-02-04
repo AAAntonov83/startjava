@@ -7,7 +7,7 @@ public class Book {
     private final int descriptionLength;
 
     public Book(String description) {
-        String[] bookInfo = description.split(", ");
+        String[] bookInfo = description.split(",");
         this.author = bookInfo[0].strip();
         this.title = bookInfo[1].strip();
         this.year = bookInfo[2].strip();
