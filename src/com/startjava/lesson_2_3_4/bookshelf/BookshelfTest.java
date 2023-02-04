@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3_4.bookshelf;
 import java.util.Scanner;
 
 public class BookshelfTest {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
         Bookshelf bookshelf = new Bookshelf();
@@ -57,7 +57,7 @@ public class BookshelfTest {
 
     private static String selectAction() {
         System.out.print("Выберите пункт меню: ");
-        return scanner.nextLine().strip();
+        return SCANNER.nextLine().strip();
     }
 
     private static boolean doAction(Bookshelf bookshelf, String action) {
@@ -65,7 +65,7 @@ public class BookshelfTest {
             case "1" -> {
                 System.out.print("Введите название удаляемой книги: ");
                 try {
-                    bookshelf.delete(scanner.nextLine().strip());
+                    bookshelf.delete(SCANNER.nextLine().strip());
                 } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
                 }
@@ -73,7 +73,7 @@ public class BookshelfTest {
             case "2" -> {
                 System.out.print("Какую книгу положите (автор, название, год издания)?: ");
                 try {
-                    bookshelf.add(new Book(scanner.nextLine().strip()));
+                    bookshelf.add(new Book(SCANNER.nextLine().strip()));
                 } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
                 }
@@ -81,7 +81,7 @@ public class BookshelfTest {
             case "3" -> {
                 System.out.print("Введите название искомой книги: ");
                 try {
-                    System.out.println(bookshelf.find(scanner.nextLine().strip()));
+                    System.out.println(bookshelf.find(SCANNER.nextLine().strip()));
                 } catch (UnsupportedOperationException e) {
                     System.out.println(e.getMessage());
                 }
@@ -100,7 +100,7 @@ public class BookshelfTest {
         }
 
         System.out.println("Для продолжения нажмите Enter.");
-        scanner.nextLine();
+        SCANNER.nextLine();
         return true;
     }
 }
