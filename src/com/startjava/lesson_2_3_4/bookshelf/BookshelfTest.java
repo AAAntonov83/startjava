@@ -3,11 +3,10 @@ package com.startjava.lesson_2_3_4.bookshelf;
 import java.util.Scanner;
 
 public class BookshelfTest {
-    private static Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Bookshelf bookshelf = new Bookshelf();
-        scanner = new Scanner(System.in);
 
         do {
             showBooks(bookshelf);
