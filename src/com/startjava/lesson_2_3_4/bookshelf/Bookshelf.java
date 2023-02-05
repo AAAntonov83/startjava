@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    private final int MAX_BOOKS = 10;
+    private static final int MAX_BOOKS = 10;
     private int numberBooks;
     private int length;
     private final Book[] books = new Book[MAX_BOOKS];
