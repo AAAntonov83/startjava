@@ -10,12 +10,12 @@ SELECT *
 \echo 'Список роботов серий "Mark-1" и "Mark-4"'
 SELECT *
   FROM jaegers
- WHERE mark IN ('Mark-1', 'Mark-2');
+ WHERE mark IN ('Mark-1', 'Mark-4');
 	
 \echo 'Список роботов, исключая серии "Mark-1" и "Mark-4"'
 SELECT *
   FROM jaegers
- WHERE mark NOT IN ('Mark-1', 'Mark-2');
+ WHERE mark NOT IN ('Mark-1', 'Mark-4');
 	
 \echo 'Список роботов, отсортированный по убыванию серии'
 SELECT *
