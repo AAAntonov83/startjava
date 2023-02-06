@@ -5,15 +5,15 @@ CREATE DATABASE lesson5;
 \c lesson5;
 
 CREATE TABLE jaegers (
-	id        integer,
-	modelname varchar(50),
-	mark      varchar(50),
-	height    real,
-	weight    real,
-	status    varchar(50),
-	origin    varchar(50),
-	launch    date,
-	kaijukill integer
+    id        SERIAL,
+    modelname VARCHAR(50),
+    mark      VARCHAR(50),
+    height    REAL,
+    weight    REAL,
+    status    VARCHAR(50),
+    origin    VARCHAR(50),
+    launch    DATE,
+    kaijukill INTEGER
 );
 
 \ir init_db.sql;
