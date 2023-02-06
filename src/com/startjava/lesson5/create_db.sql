@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS jaegers;
-
 CREATE DATABASE lesson5;
 
 \c lesson5;
+
+DROP TABLE IF EXISTS jaegers;
 
 CREATE TABLE jaegers (
 	id        integer,
