@@ -5,7 +5,6 @@ CREATE DATABASE lesson5;
 \c lesson5;
 
 CREATE TABLE jaegers (
-	PRIMARY KEY (id),
 	id        integer,
 	modelname varchar(50),
 	mark      varchar(50),
